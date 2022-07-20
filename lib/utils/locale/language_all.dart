@@ -1,0 +1,46 @@
+abstract class StringKey{
+  static String welcome = 'Welcome!';
+  static String discWelcome = 'We’ve been proud to support people who use our platform to reach for their dreams.';
+  static String start = 'Get started';
+  static String version = 'Version 2.0.4';
+  static String hint1 = 'Join us now and receive a thank you gift when you complete the registration process.';
+  static String hint2Name = 'Headphones';
+  static String hintTop = 'Newest';
+  static String hint2 = 'JBL JR300BT';
+  static String hint22 = 'Kids wireless on-ear headphones';
+  static String hint3Name = 'Vagabond';
+  static String hint3Top = 'Footwear';
+  static String hint3 = 'We are shoemakers at heart and soul. We believe that great design does not have to cost a fortune.';
+  static String hint4Name = 'Originals speckled sweatshirt';
+  static String hint4Top = 'Clothing';
+  static String hint4 = 'The comfortable sweatshirt with a large front logo print.';
+  static String craeteAccount = 'Create your unique project';
+  static String craeteAccountdisc = 'We have been proud to support people who use our platform to reach for their dreams. ';
+  static String signin = 'Sign in';
+  static String signup = 'Sign up';
+  static String newAccount = 'New account';
+  static String fullname = 'Full name';
+  static String email = 'Email address';
+  static String password = 'Password';
+  static String By = 'By signing up, you agree to our';
+  static String and = 'and';
+  static String terms = 'Terms ';
+  static String conditions = ' Conditions of Use';
+  static String createAnAccount = 'Create an Account';
+  static String continuee = 'Continue';
+  static String or = 'or sign in with       ';
+  static String correctName = 'Enter correct name.';
+  static String correctEmail = 'Enter correct email.';
+  static String correctPassword = 'Password must br greater than or equal 6.';
+  static String correctEmailSignin = 'Enter your email correctly.';
+  static String forgetPassword = 'Forget your password ?';
+  static String reset_password = 'Reset password';
+  static String reset_password_Discription = "Enter your email and we'll send you a link to reset your password.";
+  static String sendReset = 'Send reset link';
+  static String backSignIn = 'Back to Sign in';
+  static String resend = 'Resend code?';
+  static String verificationCode = 'Verification code';
+  static String verificationCodeDiscription = 'Please enter the verification code we sent to your Email.';
+  static String newPassword = 'Enter your new password and confirm new password to reset old password.';
+
+}
