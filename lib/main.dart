@@ -14,7 +14,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     int a = 0;
-    //hehehehe
+    //hehehehethgfhfh
     DioManagerClass.getInstance.init();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorSelect.transparent,
