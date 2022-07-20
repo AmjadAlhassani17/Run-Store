@@ -13,6 +13,7 @@ void main() async {
   runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
+    int a = 0;
     DioManagerClass.getInstance.init();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorSelect.transparent,
@@ -20,7 +21,7 @@ void main() async {
     ));
     await SharedPrefs.init();
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-    runApp(const AppWidget());//hehehehehehe
+    runApp(const AppWidget());
   },
       (error, stack) =>
           FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
