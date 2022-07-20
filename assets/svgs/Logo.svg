@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="134" height="134" viewBox="0 0 134 134">
+  <defs>
+    <filter id="Oval" x="0" y="0" width="134" height="134" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-color="#637381" flood-opacity="0.118"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <filter id="Oval-2" x="7.5" y="10.5" width="119" height="119" filterUnits="userSpaceOnUse">
+      <feOffset dy="4" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur-2"/>
+      <feFlood flood-color="#637381" flood-opacity="0.141"/>
+      <feComposite operator="in" in2="blur-2"/>
+    </filter>
+    <filter id="Oval-3" x="9" y="10" width="116" height="116" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur-3"/>
+      <feFlood flood-color="#637381" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4257c5"/>
+      <stop offset="0.379" stop-color="#b8e5ff"/>
+      <stop offset="0.535" stop-color="#bde7ff"/>
+      <stop offset="0.67" stop-color="#bfe7ff"/>
+      <stop offset="0.717" stop-color="#4b5cb6"/>
+      <stop offset="1" stop-color="#4257c5"/>
+    </radialGradient>
+  </defs>
+  <g id="Logo" transform="translate(15 14)">
+    <g id="Logo-2" data-name="Logo">
+      <g id="Oval-4" data-name="Oval">
+        <g transform="matrix(1, 0, 0, 1, -15, -14)" filter="url(#Oval)">
+          <circle id="Oval-5" data-name="Oval" cx="52" cy="52" r="52" transform="translate(15 14)" fill="#fff"/>
+        </g>
+        <g transform="matrix(1, 0, 0, 1, -15, -14)" filter="url(#Oval-2)">
+          <circle id="Oval-6" data-name="Oval" cx="52" cy="52" r="52" transform="translate(15 14)" fill="#fff"/>
+        </g>
+        <g transform="matrix(1, 0, 0, 1, -15, -14)" filter="url(#Oval-3)">
+          <circle id="Oval-7" data-name="Oval" cx="52" cy="52" r="52" transform="translate(15 14)" fill="#fff"/>
+        </g>
+      </g>
+      <path id="Path" d="M12.851,23.728a4,4,0,1,1,4,4A4,4,0,0,1,12.851,23.728Zm-7.624,1H0V0H9.756a9.108,9.108,0,0,1,6.537,2.346,8.2,8.2,0,0,1,2.326,6.033A8.061,8.061,0,0,1,16.253,14.4a9.378,9.378,0,0,1-6.63,2.314H5.228v8.016h0Zm0-12.207h3.55c2.831,0,4.455-1.509,4.455-4.142,0-2.609-1.633-4.1-4.479-4.1H5.228Z" transform="translate(43.149 38.273)" fill="#38489c"/>
+      <path id="Path-2" data-name="Path" d="M36,0A35.872,35.872,0,0,1,55.564,5.774a7.989,7.989,0,1,1-4.093,4.515A30,30,0,1,0,66,36q0-1.337-.116-2.657a3,3,0,0,1,5.977-.524Q72,34.4,72,36A36,36,0,1,1,36,0Z" transform="translate(16 16)" fill="url(#radial-gradient)"/>
+    </g>
+  </g>
+</svg>
