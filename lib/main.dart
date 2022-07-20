@@ -20,7 +20,7 @@ void main() async {
     ));
     await SharedPrefs.init();
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-    runApp(const AppWidget());
+    runApp(const AppWidget());//hehehehehehe
   },
       (error, stack) =>
           FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
