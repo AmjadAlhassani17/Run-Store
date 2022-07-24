@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
+import 'package:runstore/featcher/view_model/cart_view_model.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
 
 import '../../../../utils/utils.dart';
+import '../../../model/cart_product_model.dart';
 import '../../widgets/custom_price_with_line.dart';
 
 class ClothingView extends StatefulWidget {
   const ClothingView({Key? key}) : super(key: key);
   static final DioMethods dioMethods = Get.put(DioMethods(), permanent: true);
+  static final CartViewModel cartViewModel = Get.put(CartViewModel(),permanent: true);
   @override
   State<ClothingView> createState() => _ClothingViewState();
 }
@@ -113,19 +116,98 @@ class _ClothingViewState extends State<ClothingView> {
                           color: ColorSelect.whiteColor,
                           child: Column(
                             children: [
-                              Container(
-                                width: double.infinity,
-                                height: 190,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
+                              Stack(
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    height: 190,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    child: Utils.instance.networkImage(
+                                      imageUrl: ClothingView.dioMethods.clothes.elementAt(index).images.first ,
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                ),
-                                child: Utils.instance.networkImage(
-                                  imageUrl: ClothingView.dioMethods.clothes.elementAt(index).images.first ,
-                                  fit: BoxFit.fill,
-                                ),
+                                  Positioned(
+                                    top: 5,
+                                    right: MediaQuery.of(context).size.width *
+                                        0.02,
+                                    child: GetBuilder<CartViewModel>(
+                                      init: CartViewModel(),
+                                      builder: (controller) {
+                                        return FutureBuilder<bool>(
+                                          future: controller.getProduct(
+                                              ClothingView.dioMethods.clothes.elementAt(index)
+                                                  .id),
+                                          builder: (context, snapshot) {
+                                            print(
+                                                "MSG_SNAPSHOT_DATA ${snapshot.data}");
+                                            return InkWell(
+                                              onTap: () {
+                                                print(controller.cart.length);
+                                                if (snapshot.data ?? false) {
+                                                  
+                                                  setState(() {
+                                                    controller
+                                                      .deleteProduct(ClothingView.dioMethods.clothes.elementAt(index)
+                                                  .id);
+                                                  });
+                                                } else {
+                                                  
+                                                  setState(() {
+                                                    controller.addProduct(
+                                                    CartProduct(
+                                                      title: ClothingView.dioMethods.clothes.elementAt(index)
+                                                          .title,
+                                                      description:
+                                                          ClothingView.dioMethods.clothes.elementAt(index)
+                                                              .description,
+                                                      image: ClothingView.dioMethods.clothes.elementAt(index)
+                                                          .images
+                                                          .first,
+                                                      price: ClothingView.dioMethods.clothes.elementAt(index)
+                                                          .price,
+                                                      id: ClothingView.dioMethods.clothes.elementAt(index)
+                                                          .id,
+                                                    ),
+                                                  );
+                                                  });
+                                                }
+                                              },
+                                              child: Container(
+                                                height: 45,
+                                                width: 45,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: ColorSelect
+                                                          .primarycolor),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(12),
+                                                  ),
+                                                  color:
+                                                      ColorSelect.transparent,
+                                                ),
+                                                child: Icon(
+                                                  snapshot.data == true
+                                                      ? Icons.favorite
+                                                      : Icons.favorite_outline,
+                                                  color:
+                                                      ColorSelect.primarycolor,
+                                                  size: 25,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(height: 10,),
                               Padding(

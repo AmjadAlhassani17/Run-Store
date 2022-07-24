@@ -4,17 +4,20 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
 import '../../../../utils/utils.dart';
+import '../../../model/cart_product_model.dart';
+import '../../../view_model/cart_view_model.dart';
 import '../../widgets/custom_price_with_line.dart';
 
 class OthersView extends StatefulWidget {
   const OthersView({Key? key}) : super(key: key);
   static final DioMethods dioMethods = Get.put(DioMethods(), permanent: true);
+  static final CartViewModel cartViewModel =
+      Get.put(CartViewModel(), permanent: true);
   @override
   State<OthersView> createState() => _OthersViewState();
 }
 
 class _OthersViewState extends State<OthersView> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,12 +93,13 @@ class _OthersViewState extends State<OthersView> {
                 height: MediaQuery.of(context).size.height * 0.8211,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40),),
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
                   color: ColorSelect.whiteColor,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: ListView.separated(
                     itemBuilder: (BuildContext context, int index) {
                       if (OthersView.dioMethods.others.isEmpty) {
@@ -104,49 +108,187 @@ class _OthersViewState extends State<OthersView> {
                         );
                       }
                       return InkWell(
-                        onTap: (){},
+                        onTap: () {},
                         child: Container(
                           width: double.infinity,
                           height: 275,
                           color: ColorSelect.whiteColor,
                           child: Column(
                             children: [
-                              Container(
-                                width: double.infinity,
-                                height: 190,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
+                              Stack(
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    height: 190,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    child: Utils.instance.networkImage(
+                                      imageUrl: OthersView.dioMethods.others
+                                          .elementAt(index)
+                                          .images[0],
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                ),
-                                child: Utils.instance.networkImage(
-                                  imageUrl: OthersView
-                                      .dioMethods.others.elementAt(index).images[0] ,
-                                  fit: BoxFit.fill,
-                                ),
+                                  Positioned(
+                                    top: 5,
+                                    right: MediaQuery.of(context).size.width *
+                                        0.02,
+                                    child: GetBuilder<CartViewModel>(
+                                      init: CartViewModel(),
+                                      builder: (controller) {
+                                        return FutureBuilder<bool>(
+                                          future: controller.getProduct(
+                                              OthersView.dioMethods.others
+                                                  .elementAt(index)
+                                                  .id),
+                                          builder: (context, snapshot) {
+                                            print(
+                                                "MSG_SNAPSHOT_DATA ${snapshot.data}");
+                                            return InkWell(
+                                              onTap: () {
+                                                print(controller.cart.length);
+                                                if (snapshot.data ?? false) {
+                                                  
+                                                  setState(() {
+                                                    controller
+                                                      .deleteProduct(OthersView.dioMethods.others
+                                                  .elementAt(index)
+                                                  .id);
+                                                  });
+                                                } else {
+                                                  
+                                                  setState(() {
+                                                    controller.addProduct(
+                                                    CartProduct(
+                                                      title: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                          .title,
+                                                      description: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                          .description,
+                                                      image: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                          .images
+                                                          .first,
+                                                      price: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                          .price,
+                                                      id: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                          .id,
+                                                    ),
+                                                  );
+                                                  });
+                                                }
+                                              },
+                                              child: Container(
+                                                height: 45,
+                                                width: 45,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: ColorSelect
+                                                          .primarycolor),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(12),
+                                                  ),
+                                                  color:
+                                                      ColorSelect.transparent,
+                                                ),
+                                                child: Icon(
+                                                  snapshot.data == true
+                                                      ? Icons.favorite
+                                                      : Icons.favorite_outline,
+                                                  color:
+                                                      ColorSelect.primarycolor,
+                                                  size: 25,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(height: 10,),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 5,left: 5),
+                                padding:
+                                    const EdgeInsets.only(right: 5, left: 5),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    CustomText(text: OthersView.dioMethods.others.elementAt(index).category.name, color: ColorSelect.textColor, fontsize: 16, textAlign: TextAlign.left, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
-                                    CustomText(text: '\$${OthersView.dioMethods.others.elementAt(index).price}', color: ColorSelect.primarycolor, fontsize: 16, textAlign: TextAlign.right, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
+                                    CustomText(
+                                      text: OthersView.dioMethods.others
+                                          .elementAt(index)
+                                          .category
+                                          .name,
+                                      color: ColorSelect.textColor,
+                                      fontsize: 16,
+                                      textAlign: TextAlign.left,
+                                      fontWeight: FontWeight.w400,
+                                      textOverflow: TextOverflow.clip,
+                                      height: 0.0,
+                                    ),
+                                    CustomText(
+                                      text:
+                                          '\$${OthersView.dioMethods.others.elementAt(index).price}',
+                                      color: ColorSelect.primarycolor,
+                                      fontsize: 16,
+                                      textAlign: TextAlign.right,
+                                      fontWeight: FontWeight.w400,
+                                      textOverflow: TextOverflow.clip,
+                                      height: 0.0,
+                                    ),
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10,),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 5,left: 5),
+                                padding:
+                                    const EdgeInsets.only(right: 5, left: 5),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-                                      width: 250,
-                                      child: CustomText(text: OthersView.dioMethods.others.elementAt(index).title, color: ColorSelect.TextNewArrival, fontsize: 16, textAlign: TextAlign.left, fontWeight: FontWeight.w400, textOverflow: TextOverflow.ellipsis, height: 0.0,)),
-                                    CustomPriceWithLine(text: '\$${OthersView.dioMethods.others.elementAt(index).price + 56}', color: ColorSelect.PriceNewArrival, fontsize: 13, textAlign: TextAlign.right, fontWeight: FontWeight.w400, textOverflow: TextOverflow.ellipsis, height: 0.0,),
+                                        width: 250,
+                                        child: CustomText(
+                                          text: OthersView.dioMethods.others
+                                              .elementAt(index)
+                                              .title,
+                                          color: ColorSelect.TextNewArrival,
+                                          fontsize: 16,
+                                          textAlign: TextAlign.left,
+                                          fontWeight: FontWeight.w400,
+                                          textOverflow: TextOverflow.ellipsis,
+                                          height: 0.0,
+                                        )),
+                                    CustomPriceWithLine(
+                                      text:
+                                          '\$${OthersView.dioMethods.others.elementAt(index).price + 56}',
+                                      color: ColorSelect.PriceNewArrival,
+                                      fontsize: 13,
+                                      textAlign: TextAlign.right,
+                                      fontWeight: FontWeight.w400,
+                                      textOverflow: TextOverflow.ellipsis,
+                                      height: 0.0,
+                                    ),
                                   ],
                                 ),
                               ),

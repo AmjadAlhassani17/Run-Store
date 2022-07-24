@@ -96,9 +96,9 @@ class _SearchViewState extends State<SearchView> with TickerProviderStateMixin {
                       child: TextFormField(
                         onChanged: (vlaue){
                           if(tabController!.index == 0) searchViewModel.onChangeSearch(); 
-                          if(tabController!.index == 1) searchViewModel.onChangeSearchMan();
-                          if(tabController!.index == 2) searchViewModel.onChangeSearchWomen();   
-                          if(tabController!.index == 3) searchViewModel.onChangeSearchKid();                            
+                          else if(tabController!.index == 1) searchViewModel.onChangeSearchMan();
+                          else if(tabController!.index == 2) searchViewModel.onChangeSearchWomen();   
+                          else if(tabController!.index == 3) searchViewModel.onChangeSearchKid();                            
                         },
                         textAlign: TextAlign.center,
                         cursorColor: ColorSelect.curserColor,

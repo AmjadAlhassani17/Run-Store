@@ -21,7 +21,7 @@ class ControlView extends StatelessWidget {
           : GetBuilder<ControlViewModel>(
               init: ControlViewModel(),
               builder: (controller) => Scaffold(
-                backgroundColor: ColorSelect.whiteColor,
+                backgroundColor: controller.navigator == 2 ? ColorSelect.iconPerson : ColorSelect.whiteColor,
                 body: controller.currentScrren,
                 bottomNavigationBar: bottomNavigationBar(),
               ),

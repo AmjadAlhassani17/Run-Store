@@ -126,4 +126,6 @@ class DioMethods extends GetxController {
     }
     update();
   }
+
+
 }

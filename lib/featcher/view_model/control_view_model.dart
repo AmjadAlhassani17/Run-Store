@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../view/app_screens_view/details_view.dart';
 import '../view/app_screens_view/favorite_view.dart';
 import '../view/app_screens_view/home_view.dart';
@@ -32,7 +31,7 @@ class ControlViewModel extends GetxController{
         }
       case 3:
         {
-          _currentScreen = const FavoriteView();
+          _currentScreen =  FavoriteView();
           break;
         }
       case 4:

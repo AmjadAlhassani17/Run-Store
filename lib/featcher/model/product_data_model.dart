@@ -20,19 +20,20 @@ class ProductData {
 
   int id;
   String title;
-  int price;
+  dynamic price;
   String description;
   Category category;
   List<String> images;
   int categoryId;
 
   @override
-  bool operator ==(Object others) => identical(this, others) || others is ProductData && title == others.title;
+  bool operator ==(Object others) =>
+      identical(this, others) || others is ProductData && title == others.title;
 
   @override
   int get hashCode => title.hashCode;
 
-  factory ProductData.fromJson(Map<String, dynamic> json) => ProductData(
+  factory ProductData.fromJson(Map<dynamic, dynamic> json) => ProductData(
         id: json["id"],
         title: json["title"],
         price: json["price"],

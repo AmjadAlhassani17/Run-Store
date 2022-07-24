@@ -14,5 +14,7 @@ class SvgsPath {
   static const String light = "assets/svgs/light-bulb-svgrepo-com.svg";
   static const String furniture = "assets/svgs/furniture-svgrepo-com.svg";
   static const String electronics = "assets/svgs/devices-electronics-svgrepo-com.svg";
+  static const String emptyFavorite = "assets/svgs/empty_favorite.svg";
+  static const String emptyCart = "assets/svgs/emptycart.svg";
 
 }
