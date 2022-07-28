@@ -4,15 +4,20 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/core/path/svgs_path.dart';
+import 'package:runstore/featcher/model/product_data_model.dart';
 import 'package:runstore/featcher/view/app_screens_view/sup_category_view/man_sup_category_view.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/cart_view_model.dart';
 import 'package:runstore/utils/utils.dart';
 
+import '../../view_model/dio_method_view_model.dart';
+import 'details_about_item_view.dart';
+
 class FavoriteView extends StatefulWidget {
   FavoriteView({Key? key}) : super(key: key);
   static final CartViewModel cartViewModel =
       Get.put(CartViewModel(), permanent: true);
+  static final DioMethods homeViewModel = Get.find<DioMethods>();
 
   @override
   State<FavoriteView> createState() => _FavoriteViewState();
@@ -86,32 +91,38 @@ class _FavoriteViewState extends State<FavoriteView> {
                           ),
                           color: ColorSelect.whiteColor,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              SvgsPath.emptyFavorite,
-                              width: 200,
-                              height: 200,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomText(
-                                  height: 0.0,
-                                  text: 'Favorite empty',
-                                  textOverflow: TextOverflow.clip,
-                                  fontsize: 20,
-                                  color: ColorSelect.primarycolor,
-                                  fontWeight: FontWeight.w500,
-                                  textAlign: TextAlign.center,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                          
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.2),
+                                child: SvgPicture.asset(
+                                  SvgsPath.emptyFavorite,
+                                  width: 200,
+                                  height: 200,
                                 ),
-                              ],
-                            ),
-                          ],
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomText(
+                                    height: 0.0,
+                                    text: 'Favorite Empty',
+                                    textOverflow: TextOverflow.clip,
+                                    fontsize: 20,
+                                    color: ColorSelect.primarycolor,
+                                    fontWeight: FontWeight.w500,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -233,14 +244,26 @@ class _FavoriteViewState extends State<FavoriteView> {
                                         (BuildContext context, int index) {
                                       print(controller.cart.length);
                                       return InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          int? productId = FavoriteView
+                                              .cartViewModel.cart[index].id;
+                                          ProductData productData = FavoriteView
+                                              .homeViewModel.products
+                                              .where((element) =>
+                                                  element.id == productId)
+                                              .first;
+
+                                          Get.to(() => DetailsAboutItemView(
+                                                productData: productData,
+                                              ));
+                                        },
                                         child: Container(
                                           width: double.infinity,
                                           height: 150,
                                           color: ColorSelect.whiteColor,
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
@@ -329,11 +352,14 @@ class _FavoriteViewState extends State<FavoriteView> {
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                                  
-                                                      setState(() {
-                                                        controller
-                                                      .deleteProduct(controller.cart.elementAt(index).id ?? 0);
-                                                      });
+                                                  setState(() {
+                                                    controller.deleteProduct(
+                                                        controller.cart
+                                                                .elementAt(
+                                                                    index)
+                                                                .id ??
+                                                            0);
+                                                  });
                                                 },
                                                 child: Container(
                                                   height: 48,

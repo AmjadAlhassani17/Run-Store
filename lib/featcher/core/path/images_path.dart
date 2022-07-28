@@ -19,5 +19,6 @@ class ImagesPath {
   static const String kid = "assets/images/kid.png"; 
   static const String ads = "assets/images/Ads.png"; 
   static const String error = "assets/images/error.png"; 
+  static const String cart = "assets/images/Cart.png"; 
 
 }

@@ -10,6 +10,9 @@ class Utils {
   Utils._();
   static Utils instance = Utils._();
 
+  void setScreenOriantaion() async {
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
 
   // void init() async {
   //   WidgetsFlutterBinding.ensureInitialized();

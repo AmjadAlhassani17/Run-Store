@@ -48,6 +48,10 @@ dependencies:
   cached_network_image: ^3.2.1
   sqflite: ^2.0.3
   path: ^1.8.0
+  geocoding: ^2.0.4
+  geolocator: ^8.2.1
+  permission_handler: ^10.0.0
+  app_settings: ^4.1.8
   
   
 

@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/app_screens_view/search_view.dart';
 import 'package:runstore/featcher/view/app_screens_view/tabbar_screens_view/all_view.dart';
@@ -10,8 +13,30 @@ import 'package:runstore/featcher/view/app_screens_view/tabbar_screens_view/woma
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/get_data_user_view_model.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
+
+  static String addressName = '';
+  static String cityName = '';
+  static String zipCode = '';
+  static String stateName = '';
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+    @override
+  void initState() {
+    super.initState();
+    askPermission();
+    // AppSettings.openLocationSettings();
+    _getGeoLocationPosition();
+    GetAddressFromLatLong();
+  }
+
+  String location ='Null, Press Button';
+  String Address = 'search';
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -162,4 +187,66 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
+
+  askPermission() async{
+    PermissionStatus status = await Permission.locationAlways.request();
+   
+    if(status.isDenied == true)
+      {
+        askPermission();
+      }
+    else
+      {
+        return true;
+      }
+  }
+
+  Future<Position> _getGeoLocationPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      await Geolocator.openLocationSettings();
+      return Future.error('Location services are disabled.');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  }
+
+  Future<void> GetAddressFromLatLong() async {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high , forceAndroidLocationManager: true);
+    List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+    print(placemarks);
+    Placemark place = placemarks[1];
+    Address = '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+    HomeView.addressName = place.name!;
+    HomeView.cityName = place.country!;
+    HomeView.stateName = place.subLocality!;
+    HomeView.zipCode = place.postalCode!;
+    setState(()  {
+    });
+  }
+
 }

@@ -4,15 +4,18 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/cart_view_model.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
+import 'package:runstore/featcher/view_model/shopping_view-model.dart';
 import '../../../../utils/utils.dart';
 import '../../../model/cart_product_model.dart';
 import '../../widgets/custom_price_with_line.dart';
+import '../details_about_item_view.dart';
 
 class ElectronicsView extends StatefulWidget {
   const ElectronicsView({Key? key}) : super(key: key);
   static final DioMethods dioMethods = Get.put(DioMethods(), permanent: true);
   static final CartViewModel cartViewModel =
       Get.put(CartViewModel(), permanent: true);
+  static final ShoppingViewModel shoppingViewModel = Get.put(ShoppingViewModel(),permanent: true);
   @override
   State<ElectronicsView> createState() => _ElectronicsViewState();
 }
@@ -111,7 +114,10 @@ class _ElectronicsViewState extends State<ElectronicsView> {
                         );
                       }
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(() => DetailsAboutItemView(productData : ElectronicsView.dioMethods.electronics
+                                                .elementAt(index)));
+                        },
                         child: Container(
                           width: double.infinity,
                           height: 275,
@@ -231,6 +237,95 @@ class _ElectronicsViewState extends State<ElectronicsView> {
                                       },
                                     ),
                                   ),
+                                  Positioned(
+                                        top: 5,
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        child: GetBuilder<ShoppingViewModel>(
+                                          init: ShoppingViewModel(),
+                                          builder: (controller2) {
+                                            return FutureBuilder<bool>(
+                                              future: controller2.getProduct(
+                                                   ElectronicsView
+                                                          .dioMethods
+                                                          .electronics
+                                                          .elementAt(index)
+                                                        .id),
+                                              builder: (context, snapshot) {
+                                                return InkWell(
+                                                      onTap: () {
+                                                        if (snapshot.data == true) {
+                                                        controller2
+                                                            .deleteProduct(
+                                                                ElectronicsView
+                                                          .dioMethods
+                                                          .electronics
+                                                          .elementAt(index)
+                                                        .id);
+                                                        setState(() {});
+                                                      } else {
+                                                        controller2.addProduct(
+                                                          CartProduct(
+                                                            title: ElectronicsView
+                                                          .dioMethods
+                                                          .electronics
+                                                          .elementAt(index)
+                                                                .title,
+                                                            description: ElectronicsView
+                                                          .dioMethods
+                                                          .electronics
+                                                          .elementAt(index)
+                                                                .description,
+                                                            image: ElectronicsView
+                                                          .dioMethods
+                                                          .electronics
+                                                          .elementAt(index)
+                                                                .images.first,
+                                                            price: ElectronicsView
+                                                          .dioMethods
+                                                          .electronics
+                                                          .elementAt(index)
+                                                                .price,
+                                                            id: ElectronicsView
+                                                          .dioMethods
+                                                          .electronics
+                                                          .elementAt(index)
+                                                                .id,
+                                                          ),
+                                                        );
+                                                        setState(() {});
+                                                      }
+                                                      },
+                                                      child: Container(
+                                                        height: 45,
+                                                        width: 45,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: ColorSelect
+                                                                  .primarycolor),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                            Radius.circular(12),
+                                                          ),
+                                                          color:
+                                                              ColorSelect.transparent,
+                                                        ),
+                                                        child: Icon(
+                                                          snapshot.data == true ? Icons.shopping_cart :
+                                                            Icons.shopping_cart_outlined,
+                                                          color:
+                                                              ColorSelect.primarycolor,
+                                                          size: 25,
+                                                        ),
+                                                      ),
+                                                    );
+                                              }
+                                            );
+                                          }
+                                        )
+                                          
+                                      ),
                                 ],
                               ),
                               SizedBox(

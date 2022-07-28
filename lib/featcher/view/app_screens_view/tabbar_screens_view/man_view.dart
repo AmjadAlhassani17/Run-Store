@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:runstore/featcher/model/cart_product_model.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/cart_view_model.dart';
+import 'package:runstore/featcher/view_model/shopping_view-model.dart';
 import '../../../../utils/utils.dart';
 import '../../../core/colors/colors.dart';
 import '../../../view_model/dio_method_view_model.dart';
 import '../../widgets/custom_price_with_line.dart';
+import '../details_about_item_view.dart';
 
 class ManView extends StatefulWidget {
   const ManView({Key? key}) : super(key: key);
@@ -14,6 +16,7 @@ class ManView extends StatefulWidget {
   static final DioMethods dioMethods = Get.put(DioMethods(), permanent: true);
   static final CartViewModel cartViewModel =
       Get.put(CartViewModel(), permanent: true);
+  static final ShoppingViewModel shoppingViewModel = Get.put(ShoppingViewModel(),permanent: true);
 
   @override
   State<ManView> createState() => _ManViewState();
@@ -66,7 +69,10 @@ class _ManViewState extends State<ManView> {
                           itemCount: ManView.dioMethods.man.length,
                           itemBuilder: (BuildContext context, int index) {
                             return InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(() => DetailsAboutItemView(productData : ManView.dioMethods.man
+                                                .elementAt(index)));
+                              },
                               child: Container(
                                 decoration: BoxDecoration(
                                   border:
@@ -202,6 +208,81 @@ class _ManViewState extends State<ManView> {
                                               },
                                             ),
                                           ),
+                                          Positioned(
+                                        top: 5,
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        child: GetBuilder<ShoppingViewModel>(
+                                          init: ShoppingViewModel(),
+                                          builder: (controller2) {
+                                            return FutureBuilder<bool>(
+                                              future: controller2.getProduct(
+                                                   ManView.dioMethods.man
+                                                          .elementAt(index)
+                                                        .id),
+                                              builder: (context, snapshot) {
+                                                return InkWell(
+                                                      onTap: () {
+                                                        if (snapshot.data == true) {
+                                                        controller2
+                                                            .deleteProduct(
+                                                                ManView.dioMethods.man
+                                                          .elementAt(index)
+                                                        .id);
+                                                        setState(() {});
+                                                      } else {
+                                                        controller2.addProduct(
+                                                          CartProduct(
+                                                            title: ManView.dioMethods.man
+                                                          .elementAt(index)
+                                                                .title,
+                                                            description: ManView.dioMethods.man
+                                                          .elementAt(index)
+                                                                .description,
+                                                            image: ManView.dioMethods.man
+                                                          .elementAt(index)
+                                                                .images.first,
+                                                            price: ManView.dioMethods.man
+                                                          .elementAt(index)
+                                                                .price,
+                                                            id: ManView.dioMethods.man
+                                                          .elementAt(index)
+                                                                .id,
+                                                          ),
+                                                        );
+                                                        setState(() {});
+                                                      }
+                                                      },
+                                                      child: Container(
+                                                        height: 45,
+                                                        width: 45,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: ColorSelect
+                                                                  .primarycolor),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                            Radius.circular(12),
+                                                          ),
+                                                          color:
+                                                              ColorSelect.transparent,
+                                                        ),
+                                                        child: Icon(
+                                                          snapshot.data == true ? Icons.shopping_cart :
+                                                            Icons.shopping_cart_outlined,
+                                                          color:
+                                                              ColorSelect.primarycolor,
+                                                          size: 25,
+                                                        ),
+                                                      ),
+                                                    );
+                                              }
+                                            );
+                                          }
+                                        )
+                                          
+                                      ),
                                         ],
                                       ),
                                       const SizedBox(
@@ -244,15 +325,18 @@ class _ManViewState extends State<ManView> {
                                             fontWeight: FontWeight.w100,
                                             textAlign: TextAlign.left,
                                           ),
-                                          CustomPriceWithLine(
-                                            text:
-                                                '\$${ManView.dioMethods.man.elementAt(index).price + 56}',
-                                            height: 0.0,
-                                            textOverflow: TextOverflow.ellipsis,
-                                            fontsize: 16,
-                                            color: ColorSelect.PriceNewArrival,
-                                            fontWeight: FontWeight.w100,
-                                            textAlign: TextAlign.left,
+                                          Container(
+                                            width: MediaQuery.of(context).size.width * 0.15,
+                                            child: CustomPriceWithLine(
+                                              text:
+                                                  '\$${ManView.dioMethods.man.elementAt(index).price + 56}',
+                                              height: 0.0,
+                                              textOverflow: TextOverflow.ellipsis,
+                                              fontsize: 16,
+                                              color: ColorSelect.PriceNewArrival,
+                                              fontWeight: FontWeight.w100,
+                                              textAlign: TextAlign.left,
+                                            ),
                                           ),
                                         ],
                                       )

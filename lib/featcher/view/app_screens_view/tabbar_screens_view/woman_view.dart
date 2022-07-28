@@ -6,7 +6,9 @@ import '../../../core/colors/colors.dart';
 import '../../../model/cart_product_model.dart';
 import '../../../view_model/cart_view_model.dart';
 import '../../../view_model/dio_method_view_model.dart';
+import '../../../view_model/shopping_view-model.dart';
 import '../../widgets/custom_price_with_line.dart';
+import '../details_about_item_view.dart';
 
 class WomenView extends StatefulWidget {
   const WomenView({Key? key}) : super(key: key);
@@ -14,6 +16,7 @@ class WomenView extends StatefulWidget {
   static final DioMethods dioMethods = Get.put(DioMethods(), permanent: true);
   static final CartViewModel cartViewModel =
       Get.put(CartViewModel(), permanent: true);
+      static final ShoppingViewModel shoppingViewModel = Get.put(ShoppingViewModel(),permanent: true);
 
   @override
   State<WomenView> createState() => _WomenViewState();
@@ -63,7 +66,10 @@ class _WomenViewState extends State<WomenView> {
                         itemCount: WomenView.dioMethods.women.length,
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => DetailsAboutItemView(productData : WomenView.dioMethods.women
+                                                .elementAt(index)));
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(color: ColorSelect.whiteColor),
@@ -161,6 +167,74 @@ class _WomenViewState extends State<WomenView> {
                                           }
                                         ),
                                       ),
+                                      Positioned(
+                                        top: 5,
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        child: GetBuilder<ShoppingViewModel>(
+                                          init: ShoppingViewModel(),
+                                          builder: (controller2) {
+                                            return FutureBuilder<bool>(
+                                              future: controller2.getProduct(
+                                                   WomenView.dioMethods.women.elementAt(index)
+                                                        .id),
+                                              builder: (context, snapshot) {
+                                                return InkWell(
+                                                      onTap: () {
+                                                        if (snapshot.data == true) {
+                                                        controller2
+                                                            .deleteProduct(
+                                                                WomenView.dioMethods.women.elementAt(index)
+                                                        .id);
+                                                        setState(() {});
+                                                      } else {
+                                                        controller2.addProduct(
+                                                          CartProduct(
+                                                            title: WomenView.dioMethods.women.elementAt(index)
+                                                                .title,
+                                                            description: WomenView.dioMethods.women.elementAt(index)
+                                                                .description,
+                                                            image: WomenView.dioMethods.women.elementAt(index)
+                                                                .images.first,
+                                                            price: WomenView.dioMethods.women.elementAt(index)
+                                                                .price,
+                                                            id: WomenView.dioMethods.women.elementAt(index)
+                                                                .id,
+                                                          ),
+                                                        );
+                                                        setState(() {});
+                                                      }
+                                                      },
+                                                      child: Container(
+                                                        height: 45,
+                                                        width: 45,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: ColorSelect
+                                                                  .primarycolor),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                            Radius.circular(12),
+                                                          ),
+                                                          color:
+                                                              ColorSelect.transparent,
+                                                        ),
+                                                        child: Icon(
+                                                          snapshot.data == true ? Icons.shopping_cart :
+                                                            Icons.shopping_cart_outlined,
+                                                          color:
+                                                              ColorSelect.primarycolor,
+                                                          size: 25,
+                                                        ),
+                                                      ),
+                                                    );
+                                              }
+                                            );
+                                          }
+                                        )
+                                          
+                                      ),
                                       ],
                                     ),
                                     const SizedBox(
@@ -199,15 +273,18 @@ class _WomenViewState extends State<WomenView> {
                                           textAlign: TextAlign.left,
                                         ),
                                         
-                                        CustomPriceWithLine(
-                                          text:
-                                              '\$${WomenView.dioMethods.women.elementAt(index).price + 56}',
-                                          height: 0.0,
-                                          textOverflow: TextOverflow.ellipsis,
-                                          fontsize: 16,
-                                          color: ColorSelect.PriceNewArrival,
-                                          fontWeight: FontWeight.w100,
-                                          textAlign: TextAlign.left,
+                                        Container(
+                                          width: MediaQuery.of(context).size.width * 0.15,
+                                          child: CustomPriceWithLine(
+                                            text:
+                                                '\$${WomenView.dioMethods.women.elementAt(index).price + 56}',
+                                            height: 0.0,
+                                            textOverflow: TextOverflow.ellipsis,
+                                            fontsize: 16,
+                                            color: ColorSelect.PriceNewArrival,
+                                            fontWeight: FontWeight.w100,
+                                            textAlign: TextAlign.left,
+                                          ),
                                         ),
                                       ],
                                     )

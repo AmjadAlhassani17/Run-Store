@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:runstore/featcher/core/theme/my_app.dart';
 import 'package:runstore/utils/shared/shared_preferance.dart';
+import 'package:runstore/utils/utils.dart';
 import 'featcher/core/colors/colors.dart';
 import 'network/dio_manage_class.dart';
 
@@ -14,6 +15,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     DioManagerClass.getInstance.init();
+    Utils.instance.setScreenOriantaion();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorSelect.transparent,
       statusBarIconBrightness: Brightness.dark,

@@ -14,5 +14,12 @@ abstract class Constant{
   static String description = 'description';
   static String image = 'image';
   static var fav = "Fav";
-
+  
+  static String tableProductShop = 'shoppingProduct';
+  static String idShop = 'id';
+  static String titleShop = 'title';
+  static String priceShop = 'price';
+  static String descriptionShop = 'description';
+  static String imageShop = 'image';
+  static var favShop = "Fav";
 }

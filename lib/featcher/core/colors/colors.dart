@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColorSelect {
+abstract class ColorSelect {
   static const primarycolor =  Color.fromRGBO(92, 106, 196, 1);
   static const scaffoldBackgroundColor =   Color.fromRGBO(255, 255, 255, 1);
   static const scaffoldBackgroundColor_ =   Color.fromRGBO(249, 255, 251, 1);

@@ -6,11 +6,13 @@ import 'package:runstore/featcher/model/product_data_model.dart';
 import 'package:runstore/featcher/view/widgets/custom_price_with_line.dart';
 import 'package:runstore/featcher/view_model/cart_view_model.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
+import 'package:runstore/featcher/view_model/shopping_view-model.dart';
 import '../../../../utils/utils.dart';
 import '../../../core/colors/colors.dart';
 import '../../../core/path/images_path.dart';
 import '../../../model/cart_product_model.dart';
 import '../../widgets/custom_text.dart';
+import '../details_about_item_view.dart';
 
 class AllView extends StatefulWidget {
   const AllView({Key? key}) : super(key: key);
@@ -18,6 +20,9 @@ class AllView extends StatefulWidget {
   static final DioMethods dioMethods = Get.put(DioMethods(), permanent: true);
   static final CartViewModel cartViewModel =
       Get.put(CartViewModel(), permanent: true);
+
+      static final ShoppingViewModel shoppingViewModel =
+      Get.put(ShoppingViewModel(), permanent: true);
 
   @override
   State<AllView> createState() => _AllViewState();
@@ -199,7 +204,11 @@ class _AllViewState extends State<AllView> {
                             : AllView.dioMethods.products.length,
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => DetailsAboutItemView(productData : AllView
+                                                .dioMethods.products
+                                                .elementAt(index + 1)));
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 border:
@@ -229,8 +238,7 @@ class _AllViewState extends State<AllView> {
                                             imageUrl: AllView
                                                 .dioMethods.products
                                                 .elementAt(index + 1)
-                                                .category
-                                                .image,
+                                                .images.first,
                                             fit: BoxFit.fill),
                                       ),
                                       Positioned(
@@ -278,8 +286,7 @@ class _AllViewState extends State<AllView> {
                                                                 .products
                                                                 .elementAt(
                                                                     index + 1)
-                                                                .category
-                                                                .image,
+                                                                .images.first,
                                                             price: AllView
                                                                 .dioMethods
                                                                 .products
@@ -325,6 +332,96 @@ class _AllViewState extends State<AllView> {
                                               );
                                             }),
                                       ),
+                                      Positioned(
+                                        top: 5,
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        child: GetBuilder<ShoppingViewModel>(
+                                          init: ShoppingViewModel(),
+                                          builder: (controller2) {
+                                            return FutureBuilder<bool>(
+                                              future: controller2.getProduct(
+                                                    AllView.dioMethods.products
+                                                        .elementAt(index + 1)
+                                                        .id),
+                                              builder: (context, snapshot) {
+                                                return InkWell(
+                                                      onTap: () {
+                                                        if (snapshot.data == true) {
+                                                        controller2
+                                                            .deleteProduct(
+                                                                AllView.dioMethods.products
+                                                        .elementAt(index + 1)
+                                                        .id);
+                                                        setState(() {});
+                                                      } else {
+                                                        controller2.addProduct(
+                                                          CartProduct(
+                                                            title: AllView
+                                                                .dioMethods
+                                                                .products
+                                                                .elementAt(
+                                                                    index + 1)
+                                                                .title,
+                                                            description: AllView
+                                                                .dioMethods
+                                                                .products
+                                                                .elementAt(
+                                                                    index + 1)
+                                                                .description,
+                                                            image: AllView
+                                                                .dioMethods
+                                                                .products
+                                                                .elementAt(
+                                                                    index + 1)
+                                                                .images.first,
+                                                            price: AllView
+                                                                .dioMethods
+                                                                .products
+                                                                .elementAt(
+                                                                    index + 1)
+                                                                .price,
+                                                            id: AllView
+                                                                .dioMethods
+                                                                .products
+                                                                .elementAt(
+                                                                    index + 1)
+                                                                .id,
+                                                          ),
+                                                        );
+                                                        setState(() {});
+                                                      }
+                                                      },
+                                                      child: Container(
+                                                        height: 45,
+                                                        width: 45,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: ColorSelect
+                                                                  .primarycolor),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                            Radius.circular(12),
+                                                          ),
+                                                          color:
+                                                              ColorSelect.transparent,
+                                                        ),
+                                                        child: Icon(
+                                                          snapshot.data == true ? Icons.shopping_cart :
+                                                            Icons.shopping_cart_outlined,
+                                                          color:
+                                                              ColorSelect.primarycolor,
+                                                          size: 25,
+                                                        ),
+                                                      ),
+                                                    );
+                                              }
+                                            );
+                                          }
+                                        )
+                                          
+                                      ),
                                     ]),
                                     const SizedBox(
                                       height: 10,
@@ -353,6 +450,7 @@ class _AllViewState extends State<AllView> {
                                       textAlign: TextAlign.left,
                                     ),
                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         CustomText(
                                           text:
@@ -364,18 +462,19 @@ class _AllViewState extends State<AllView> {
                                           fontWeight: FontWeight.w100,
                                           textAlign: TextAlign.left,
                                         ),
-                                        SizedBox(
-                                          width: 35,
-                                        ),
-                                        CustomPriceWithLine(
-                                          text:
-                                              '\$${AllView.dioMethods.products.elementAt(index + 1).price + 56}',
-                                          height: 0.0,
-                                          textOverflow: TextOverflow.ellipsis,
-                                          fontsize: 16,
-                                          color: ColorSelect.PriceNewArrival,
-                                          fontWeight: FontWeight.w100,
-                                          textAlign: TextAlign.left,
+                                        
+                                        Container(
+                                          width: MediaQuery.of(context).size.width * 0.15,
+                                          child: CustomPriceWithLine(
+                                            text:
+                                                '\$${AllView.dioMethods.products.elementAt(index + 1).price + 56}',
+                                            height: 0.0,
+                                            textOverflow: TextOverflow.ellipsis,
+                                            fontsize: 16,
+                                            color: ColorSelect.PriceNewArrival,
+                                            fontWeight: FontWeight.w100,
+                                            textAlign: TextAlign.left,
+                                          ),
                                         ),
                                       ],
                                     )
@@ -428,7 +527,9 @@ class _AllViewState extends State<AllView> {
                       itemCount: data.length,
                       itemBuilder: (BuildContext context, int idx) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.to(() => DetailsAboutItemView(productData: data[idx]));
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.all(color: ColorSelect.whiteColor),
@@ -455,7 +556,7 @@ class _AllViewState extends State<AllView> {
                                           ),
                                         ),
                                         child: Utils.instance.networkImage(
-                                          imageUrl: data[idx].category.image,
+                                          imageUrl: data[idx].images.first,
                                           fit: BoxFit.fill,
                                         ),
                                       ),
@@ -488,8 +589,7 @@ class _AllViewState extends State<AllView> {
                                                       description:
                                                           data[idx].description,
                                                       image: data[idx]
-                                                          .category
-                                                          .image,
+                                                          .images.first,
                                                       price: data[idx].price,
                                                       id: data[idx].id,
                                                     ),
@@ -523,6 +623,74 @@ class _AllViewState extends State<AllView> {
                                             );
                                           },
                                         ),
+                                      ),
+                                      Positioned(
+                                        top: 5,
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        child: GetBuilder<ShoppingViewModel>(
+                                          init: ShoppingViewModel(),
+                                          builder: (controller2) {
+                                            return FutureBuilder<bool>(
+                                              future: controller2.getProduct(
+                                                   data[idx]
+                                                        .id),
+                                              builder: (context, snapshot) {
+                                                return InkWell(
+                                                      onTap: () {
+                                                        if (snapshot.data == true) {
+                                                        controller2
+                                                            .deleteProduct(
+                                                                data[idx]
+                                                        .id);
+                                                        setState(() {});
+                                                      } else {
+                                                        controller2.addProduct(
+                                                          CartProduct(
+                                                            title: data[idx]
+                                                                .title,
+                                                            description: data[idx]
+                                                                .description,
+                                                            image: data[idx]
+                                                                .images.first,
+                                                            price: data[idx]
+                                                                .price,
+                                                            id: data[idx]
+                                                                .id,
+                                                          ),
+                                                        );
+                                                        setState(() {});
+                                                      }
+                                                      },
+                                                      child: Container(
+                                                        height: 45,
+                                                        width: 45,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: ColorSelect
+                                                                  .primarycolor),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                            Radius.circular(12),
+                                                          ),
+                                                          color:
+                                                              ColorSelect.transparent,
+                                                        ),
+                                                        child: Icon(
+                                                          snapshot.data == true ? Icons.shopping_cart :
+                                                            Icons.shopping_cart_outlined,
+                                                          color:
+                                                              ColorSelect.primarycolor,
+                                                          size: 25,
+                                                        ),
+                                                      ),
+                                                    );
+                                              }
+                                            );
+                                          }
+                                        )
+                                          
                                       ),
                                     ],
                                   ),
@@ -560,14 +728,18 @@ class _AllViewState extends State<AllView> {
                                         fontWeight: FontWeight.w100,
                                         textAlign: TextAlign.left,
                                       ),
-                                      CustomPriceWithLine(
-                                        text: '\$${data[idx].price + 56}',
-                                        height: 0.0,
-                                        textOverflow: TextOverflow.ellipsis,
-                                        fontsize: 16,
-                                        color: ColorSelect.PriceNewArrival,
-                                        fontWeight: FontWeight.w100,
-                                        textAlign: TextAlign.left,
+                                      
+                                      Container(
+                                          width: MediaQuery.of(context).size.width * 0.15,
+                                        child: CustomPriceWithLine(
+                                          text: '\$${data[idx].price + 56}',
+                                          height: 0.0,
+                                          textOverflow: TextOverflow.ellipsis,
+                                          fontsize: 16,
+                                          color: ColorSelect.PriceNewArrival,
+                                          fontWeight: FontWeight.w100,
+                                          textAlign: TextAlign.left,
+                                        ),
                                       ),
                                     ],
                                   )

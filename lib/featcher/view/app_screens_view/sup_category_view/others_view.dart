@@ -6,13 +6,16 @@ import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
 import '../../../../utils/utils.dart';
 import '../../../model/cart_product_model.dart';
 import '../../../view_model/cart_view_model.dart';
+import '../../../view_model/shopping_view-model.dart';
 import '../../widgets/custom_price_with_line.dart';
+import '../details_about_item_view.dart';
 
 class OthersView extends StatefulWidget {
   const OthersView({Key? key}) : super(key: key);
   static final DioMethods dioMethods = Get.put(DioMethods(), permanent: true);
   static final CartViewModel cartViewModel =
       Get.put(CartViewModel(), permanent: true);
+      static final ShoppingViewModel shoppingViewModel = Get.put(ShoppingViewModel(),permanent: true);
   @override
   State<OthersView> createState() => _OthersViewState();
 }
@@ -108,7 +111,10 @@ class _OthersViewState extends State<OthersView> {
                         );
                       }
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(() => DetailsAboutItemView(productData : OthersView.dioMethods.others
+                                                .elementAt(index)));
+                        },
                         child: Container(
                           width: double.infinity,
                           height: 275,
@@ -219,6 +225,88 @@ class _OthersViewState extends State<OthersView> {
                                       },
                                     ),
                                   ),
+                                  Positioned(
+                                        top: 5,
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        child: GetBuilder<ShoppingViewModel>(
+                                          init: ShoppingViewModel(),
+                                          builder: (controller2) {
+                                            return FutureBuilder<bool>(
+                                              future: controller2.getProduct(
+                                                   OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                        .id),
+                                              builder: (context, snapshot) {
+                                                return InkWell(
+                                                      onTap: () {
+                                                        if (snapshot.data == true) {
+                                                        controller2
+                                                            .deleteProduct(
+                                                                OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                        .id);
+                                                        setState(() {});
+                                                      } else {
+                                                        controller2.addProduct(
+                                                          CartProduct(
+                                                            title: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                                .title,
+                                                            description: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                                .description,
+                                                            image: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                                .images.first,
+                                                            price: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                                .price,
+                                                            id: OthersView
+                                                          .dioMethods.others
+                                                          .elementAt(index)
+                                                                .id,
+                                                          ),
+                                                        );
+                                                        setState(() {});
+                                                      }
+                                                      },
+                                                      child: Container(
+                                                        height: 45,
+                                                        width: 45,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: ColorSelect
+                                                                  .primarycolor),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                            Radius.circular(12),
+                                                          ),
+                                                          color:
+                                                              ColorSelect.transparent,
+                                                        ),
+                                                        child: Icon(
+                                                          snapshot.data == true ? Icons.shopping_cart :
+                                                            Icons.shopping_cart_outlined,
+                                                          color:
+                                                              ColorSelect.primarycolor,
+                                                          size: 25,
+                                                        ),
+                                                      ),
+                                                    );
+                                              }
+                                            );
+                                          }
+                                        )
+                                          
+                                      ),
                                 ],
                               ),
                               SizedBox(
