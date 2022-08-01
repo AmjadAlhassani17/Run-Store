@@ -7,6 +7,7 @@ import 'package:runstore/featcher/view/widgets/custom_price_with_line.dart';
 import 'package:runstore/featcher/view_model/cart_view_model.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
 import 'package:runstore/featcher/view_model/shopping_view-model.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../../../../utils/utils.dart';
 import '../../../core/colors/colors.dart';
 import '../../../core/path/images_path.dart';
@@ -93,7 +94,7 @@ class _AllViewState extends State<AllView> {
                 ),
               ),
               title: CustomText(
-                text: 'New arrivals',
+                text: StringKey.newarrivals.tr,
                 color: ColorSelect.textColor,
                 fontsize: 17,
                 textAlign: TextAlign.left,
@@ -155,7 +156,7 @@ class _AllViewState extends State<AllView> {
                 ),
               ),
               title: CustomText(
-                text: 'Most popular',
+                text: StringKey.mostpopular.tr,
                 color: ColorSelect.textColor,
                 fontsize: 17,
                 textAlign: TextAlign.left,

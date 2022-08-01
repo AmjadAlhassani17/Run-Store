@@ -5,6 +5,7 @@ import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/cart_view_model.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
 import 'package:runstore/featcher/view_model/shopping_view-model.dart';
+import '../../../../utils/locale/language_all.dart';
 import '../../../../utils/utils.dart';
 import '../../../model/cart_product_model.dart';
 import '../../widgets/custom_price_with_line.dart';
@@ -62,7 +63,7 @@ class _ElectronicsViewState extends State<ElectronicsView> {
                 ),
               ),
               title: CustomText(
-                text: 'Category',
+                text: StringKey.category.tr,
                 color: ColorSelect.textColor,
                 fontsize: 17,
                 textAlign: TextAlign.center,
@@ -374,20 +375,18 @@ class _ElectronicsViewState extends State<ElectronicsView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                        width: 250,
-                                        child: CustomText(
-                                          text: ElectronicsView
-                                              .dioMethods.electronics
-                                              .elementAt(index)
-                                              .title,
-                                          color: ColorSelect.TextNewArrival,
-                                          fontsize: 16,
-                                          textAlign: TextAlign.left,
-                                          fontWeight: FontWeight.w400,
-                                          textOverflow: TextOverflow.ellipsis,
-                                          height: 0.0,
-                                        )),
+                                    CustomText(
+                                      text: ElectronicsView
+                                          .dioMethods.electronics
+                                          .elementAt(index)
+                                          .title,
+                                      color: ColorSelect.TextNewArrival,
+                                      fontsize: 16,
+                                      textAlign: TextAlign.left,
+                                      fontWeight: FontWeight.w400,
+                                      textOverflow: TextOverflow.ellipsis,
+                                      height: 0.0,
+                                    ),
                                     CustomPriceWithLine(
                                       text:
                                           '\$${ElectronicsView.dioMethods.electronics.elementAt(index).price + 56}',

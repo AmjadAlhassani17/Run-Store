@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:runstore/featcher/core/path/svgs_path.dart';
 import 'package:runstore/featcher/view/widgets/container_without_shadow.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../view_model/check_out_view_model.dart';
 import '../../../widgets/container_with_shadow.dart';
@@ -37,14 +38,14 @@ class DeliveryView extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 10),
                     child: Column(
                       children: [
-                        controller.statePrice == 0 ? ContainerWithShadow(text: 'Free - \$0.00', price: '3-5 day delivery', pathSvg: SvgsPath.checkmarkdone) : InkWell(onTap: () => controller.changeStatePrice(index: 0),
-                          child: ContainerWithOutShadow(text: 'Free - \$0.00', price: '3-5 day delivery', pathSvg: SvgsPath.checkmark)),
+                        controller.statePrice == 0 ? ContainerWithShadow(text: '${StringKey.free.tr} - \$0.00', price: '3-5 ${StringKey.dayDelivery.tr}', pathSvg: SvgsPath.checkmarkdone) : InkWell(onTap: () => controller.changeStatePrice(index: 0),
+                          child: ContainerWithOutShadow(text: '${StringKey.free.tr} - \$0.00', price: '3-5 ${StringKey.dayDelivery.tr}', pathSvg: SvgsPath.checkmark)),
                         SizedBox(height: 16,),
-                        controller.statePrice == 1 ? ContainerWithShadow(text: 'Standard - \$2.50', price: '2-3 day delivery', pathSvg: SvgsPath.checkmarkdone) : InkWell(onTap: () => controller.changeStatePrice(index: 1),
-                          child: ContainerWithOutShadow(text: 'Standard - \$2.50', price: '2-3 day delivery', pathSvg: SvgsPath.checkmark)),
+                        controller.statePrice == 1 ? ContainerWithShadow(text: '${StringKey.standard.tr} - \$2.50', price: '2-3 ${StringKey.dayDelivery.tr}', pathSvg: SvgsPath.checkmarkdone) : InkWell(onTap: () => controller.changeStatePrice(index: 1),
+                          child: ContainerWithOutShadow(text: '${StringKey.standard.tr} - \$2.50', price: '2-3 ${StringKey.dayDelivery.tr}', pathSvg: SvgsPath.checkmark)),
                         SizedBox(height: 16,),
-                        controller.statePrice == 2 ? ContainerWithShadow(text: 'Express - \$5.99', price: 'Next day delivery', pathSvg: SvgsPath.checkmarkdone) : InkWell(onTap: () => controller.changeStatePrice(index: 2),
-                          child: ContainerWithOutShadow(text: 'Express - \$5.99', price: 'Next day delivery', pathSvg: SvgsPath.checkmark)),
+                        controller.statePrice == 2 ? ContainerWithShadow(text: '${StringKey.express.tr} - \$5.99', price: '${StringKey.next.tr} ${StringKey.dayDelivery.tr}', pathSvg: SvgsPath.checkmarkdone) : InkWell(onTap: () => controller.changeStatePrice(index: 2),
+                          child: ContainerWithOutShadow(text: '${StringKey.express.tr} - \$5.99', price: '${StringKey.next.tr} ${StringKey.dayDelivery.tr}', pathSvg: SvgsPath.checkmark)),
                         
                         SizedBox(
                           height: 23,
@@ -52,7 +53,7 @@ class DeliveryView extends StatelessWidget {
             
                         Padding(
                           padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
-                          child: CustomText(text: 'Free shipping over \$49 + free returns and exchange', color: ColorSelect.PriceNewArrival, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
+                          child: CustomText(text: '${StringKey.freeShopping.tr} \$49 + ${StringKey.freeReturn.tr}', color: ColorSelect.PriceNewArrival, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
                         ),
                         SizedBox(
                           height: 23,
@@ -63,7 +64,7 @@ class DeliveryView extends StatelessWidget {
                             return Padding(
                               padding:  EdgeInsets.symmetric(horizontal: 15),
                               child: CustomBottonAll(
-                                text: 'Next',
+                                text: StringKey.next.tr,
                                 width: double.infinity,
                                 height: 48,
                                 fontWeight: FontWeight.w600,

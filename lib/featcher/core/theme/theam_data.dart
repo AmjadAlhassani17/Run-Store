@@ -15,6 +15,7 @@ class TheamData {
       ),
       brightness: Brightness.dark,
       fontFamily: 'NunitoSans',
+      unselectedWidgetColor: ColorSelect.TextNewArrival,
     );
   }
 }

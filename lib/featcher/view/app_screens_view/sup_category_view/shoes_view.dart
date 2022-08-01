@@ -4,6 +4,7 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/cart_view_model.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
+import '../../../../utils/locale/language_all.dart';
 import '../../../../utils/utils.dart';
 import '../../../model/cart_product_model.dart';
 import '../../../view_model/shopping_view-model.dart';
@@ -62,7 +63,7 @@ class _ShoesViewState extends State<ShoesView> {
                 ),
               ),
               title: CustomText(
-                text: 'Category',
+                text: StringKey.category.tr,
                 color: ColorSelect.textColor,
                 fontsize: 17,
                 textAlign: TextAlign.center,
@@ -312,9 +313,7 @@ class _ShoesViewState extends State<ShoesView> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      width: 250,
-                                      child: CustomText(text: ShoesView.dioMethods.shoes.elementAt(index).title, color: ColorSelect.TextNewArrival, fontsize: 16, textAlign: TextAlign.left, fontWeight: FontWeight.w400, textOverflow: TextOverflow.ellipsis, height: 0.0,)),
+                                    CustomText(text: ShoesView.dioMethods.shoes.elementAt(index).title, color: ColorSelect.TextNewArrival, fontsize: 16, textAlign: TextAlign.left, fontWeight: FontWeight.w400, textOverflow: TextOverflow.ellipsis, height: 0.0,),
                                     CustomPriceWithLine(text: '\$${ShoesView.dioMethods.shoes.elementAt(index).price + 56}', color: ColorSelect.PriceNewArrival, fontsize: 13, textAlign: TextAlign.right, fontWeight: FontWeight.w400, textOverflow: TextOverflow.ellipsis, height: 0.0,),
                                   ],
                                 ),

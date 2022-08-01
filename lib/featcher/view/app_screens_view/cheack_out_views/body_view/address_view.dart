@@ -82,7 +82,7 @@ class _AddressViewState extends State<AddressView> {
                                 keyboardType: TextInputType.name,
                                 decoration: InputDecoration(
                                   label: CustomText(
-                                    text: 'Name',
+                                    text: StringKey.name.tr,
                                     color: ColorSelect.textColor,
                                     fontsize: 11,
                                     textAlign: TextAlign.start,
@@ -125,7 +125,7 @@ class _AddressViewState extends State<AddressView> {
                                 validator: (value) {
                                   if (value!.isEmpty ||
                                       value.toString().length < 6) {
-                                    return 'Enter correct address.';
+                                    return StringKey.correctAddress.tr;
                                   } else {
                                     return null;
                                   }
@@ -133,7 +133,7 @@ class _AddressViewState extends State<AddressView> {
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   label: CustomText(
-                                    text: 'Address',
+                                    text: StringKey.address.tr,
                                     color: ColorSelect.textColor,
                                     fontsize: 11,
                                     textAlign: TextAlign.start,
@@ -176,7 +176,7 @@ class _AddressViewState extends State<AddressView> {
                                   obscureText: false,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return 'Enter correct city.';
+                                      return StringKey.correctCity.tr;
                                     } else {
                                       return null;
                                     }
@@ -184,7 +184,7 @@ class _AddressViewState extends State<AddressView> {
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(
                                     label: CustomText(
-                                      text: 'City',
+                                      text: StringKey.city.tr,
                                       color: ColorSelect.textColor,
                                       fontsize: 11,
                                       textAlign: TextAlign.start,
@@ -228,7 +228,7 @@ class _AddressViewState extends State<AddressView> {
                                   validator: (value) {
                                     if (value!.isEmpty ||
                                         value.toString().length != 5) {
-                                      return 'Enter correct ZIP code.';
+                                      return StringKey.correctZip.tr;
                                     } else {
                                       return null;
                                     }
@@ -236,7 +236,7 @@ class _AddressViewState extends State<AddressView> {
                                   keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     label: CustomText(
-                                      text: 'ZIP code',
+                                      text: StringKey.zip.tr,
                                       color: ColorSelect.textColor,
                                       fontsize: 11,
                                       textAlign: TextAlign.start,
@@ -279,7 +279,7 @@ class _AddressViewState extends State<AddressView> {
                                 obscureText: false,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Enter correct state.';
+                                    return StringKey.correctState.tr;
                                   } else {
                                     return null;
                                   }
@@ -287,7 +287,7 @@ class _AddressViewState extends State<AddressView> {
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   label: CustomText(
-                                    text: 'State',
+                                    text: StringKey.state.tr,
                                     color: ColorSelect.textColor,
                                     fontsize: 11,
                                     textAlign: TextAlign.start,
@@ -331,7 +331,7 @@ class _AddressViewState extends State<AddressView> {
                                   if (value!.isEmpty ||
                                       !GetUtils.isPhoneNumber(
                                           value.toString())) {
-                                    return 'Enter correct phone number.';
+                                    return StringKey.correctPhone.tr;
                                   } else {
                                     return null;
                                   }
@@ -339,7 +339,7 @@ class _AddressViewState extends State<AddressView> {
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
                                   label: CustomText(
-                                    text: 'Phone Number',
+                                    text: StringKey.phone.tr,
                                     color: ColorSelect.textColor,
                                     fontsize: 11,
                                     textAlign: TextAlign.start,
@@ -383,7 +383,7 @@ class _AddressViewState extends State<AddressView> {
                     padding: EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * 0.05),
                     child: CustomBotton(
-                      text: 'Next',
+                      text: StringKey.next.tr,
                       width: double.infinity,
                       height: 48,
                       fontWeight: FontWeight.w600,

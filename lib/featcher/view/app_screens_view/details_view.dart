@@ -16,6 +16,7 @@ import 'package:runstore/featcher/view/widgets/custom_brand_list_tail.dart';
 import 'package:runstore/featcher/view/widgets/custom_buttpn_view_all.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 
 class DetailsView extends StatelessWidget {
   const DetailsView({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class DetailsView extends StatelessWidget {
                 width: 48,
               ),
               title: CustomText(
-                text: 'Catalog',
+                text: StringKey.catalog.tr,
                 color: ColorSelect.textColor,
                 fontsize: 17,
                 textAlign: TextAlign.center,
@@ -102,22 +103,22 @@ class DetailsView extends StatelessWidget {
                                 fit: BoxFit.fill),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 35, top: 35),
+                            padding: EdgeInsets.only(left: 35, top: 35 , right: MediaQuery.of(context).size.width * 0.55),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 CustomText(
-                                  text: 'Men',
+                                  text: StringKey.men.tr,
                                   color: ColorSelect.TextMen,
-                                  fontsize: 34,
-                                  textAlign: TextAlign.left,
+                                  fontsize: 24,
+                                  textAlign: TextAlign.center,
                                   fontWeight: FontWeight.w400,
                                   textOverflow: TextOverflow.clip,
                                   height: 0.0,
                                 ),
                                 CustomText(
-                                  text: '${dioMethods.man.length}K products',
+                                  text: '${dioMethods.man.length}K ${StringKey.product.tr}',
                                   color: ColorSelect.TextDisCatigore,
                                   fontsize: 16,
                                   textAlign: TextAlign.left,
@@ -129,7 +130,7 @@ class DetailsView extends StatelessWidget {
                                   height: 50,
                                 ),
                                 CustomBottonViewAll(
-                                  text: 'View all',
+                                  text: StringKey.viewAll.tr,
                                   width: 110,
                                   height: 35,
                                   fontWeight: FontWeight.w600,
@@ -157,22 +158,22 @@ class DetailsView extends StatelessWidget {
                                 fit: BoxFit.fill),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 35, top: 35),
+                            padding: EdgeInsets.only(left: 35, top: 35 , right: MediaQuery.of(context).size.width * 0.55),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 CustomText(
-                                  text: 'Women',
+                                  text: StringKey.women.tr,
                                   color: ColorSelect.TextWomen,
-                                  fontsize: 34,
+                                  fontsize: 24,
                                   textAlign: TextAlign.left,
                                   fontWeight: FontWeight.w400,
                                   textOverflow: TextOverflow.clip,
                                   height: 0.0,
                                 ),
                                 CustomText(
-                                  text: '${dioMethods.women.length}K products',
+                                  text: '${dioMethods.women.length}K ${StringKey.product.tr}',
                                   color: ColorSelect.TextDisCatigore,
                                   fontsize: 16,
                                   textAlign: TextAlign.left,
@@ -184,14 +185,14 @@ class DetailsView extends StatelessWidget {
                                   height: 50,
                                 ),
                                 CustomBottonViewAll(
-                                  text: 'View all',
+                                  text: StringKey.viewAll.tr,
                                   width: 110,
                                   height: 35,
                                   fontWeight: FontWeight.w600,
                                   function: () => Get.to(() => WomenSupCategoryView()),
                                   color: ColorSelect.whiteColor,
                                   backgroundcolor: ColorSelect.TextWomenButton,
-                                  textAlign: TextAlign.left,
+                                  textAlign: TextAlign.right,
                                   fontsize: 14,
                                 ),
                               ],
@@ -213,22 +214,22 @@ class DetailsView extends StatelessWidget {
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 35, top: 35),
+                            padding: EdgeInsets.only(left: 35, top: 35 , right: MediaQuery.of(context).size.width * 0.55),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 CustomText(
-                                  text: 'Kids',
+                                  text: StringKey.kid.tr,
                                   color: ColorSelect.TextKid,
-                                  fontsize: 34,
+                                  fontsize: 24,
                                   textAlign: TextAlign.left,
                                   fontWeight: FontWeight.w400,
                                   textOverflow: TextOverflow.clip,
                                   height: 0.0,
                                 ),
                                 CustomText(
-                                  text: '${dioMethods.kid.length}K products',
+                                  text: '${dioMethods.kid.length}K ${StringKey.product.tr}',
                                   color: ColorSelect.TextDisCatigore,
                                   fontsize: 16,
                                   textAlign: TextAlign.left,
@@ -240,7 +241,7 @@ class DetailsView extends StatelessWidget {
                                   height: 50,
                                 ),
                                 CustomBottonViewAll(
-                                  text: 'View all',
+                                  text: StringKey.viewAll.tr,
                                   width: 110,
                                   height: 35,
                                   fontWeight: FontWeight.w600,
@@ -272,7 +273,7 @@ class DetailsView extends StatelessWidget {
                           height: 20,
                         ),
                         CustomListTail(
-                          name: 'Clothing',
+                          name: StringKey.clothing.tr,
                           svg: SvgsPath.Tshirt,
                           trailing: () => Get.to(
                             () => ClothingView(),
@@ -285,7 +286,7 @@ class DetailsView extends StatelessWidget {
                           height: 20,
                         ),
                         CustomListTail(
-                          name: 'Shoes',
+                          name: StringKey.shoes.tr,
                           svg: SvgsPath.shoes,
                           trailing: () => Get.to(
                             () => ShoesView(),
@@ -298,7 +299,7 @@ class DetailsView extends StatelessWidget {
                           height: 20,
                         ),
                         CustomListTail(
-                          name: 'Furniture',
+                          name: StringKey.furniture.tr,
                           svg: SvgsPath.furniture,
                           trailing: () => Get.to(
                             () => FurnitureView(),
@@ -311,7 +312,7 @@ class DetailsView extends StatelessWidget {
                           height: 20,
                         ),
                         CustomListTail(
-                          name: 'Electronics',
+                          name: StringKey.electronics.tr,
                           svg: SvgsPath.electronics,
                           trailing: () => Get.to(
                             () => ElectronicsView(),
@@ -324,7 +325,7 @@ class DetailsView extends StatelessWidget {
                           height: 20,
                         ),
                         CustomListTail(
-                          name: 'Others',
+                          name: StringKey.others.tr,
                           svg: SvgsPath.light,
                           trailing: () => Get.to(
                             () => OthersView(),

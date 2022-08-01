@@ -7,6 +7,7 @@ import 'package:runstore/featcher/view/app_screens_view/cheack_out_views/body_vi
 import 'package:runstore/featcher/view/control.dart';
 import 'package:runstore/featcher/view/widgets/custom_button.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../../../../../utils/utils.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/path/svgs_path.dart';
@@ -74,7 +75,7 @@ class _ConfirmViewState extends State<ConfirmView> {
                                 height: 0.0,
                               ),
                               title: CustomText(
-                                text: 'In your cart',
+                                text: StringKey.inYourCart.tr,
                                 color: ColorSelect.textColor,
                                 fontsize: 17,
                                 textAlign: TextAlign.left,
@@ -246,7 +247,7 @@ class _ConfirmViewState extends State<ConfirmView> {
                     ),
                   ),
                   title: CustomText(
-                    text: 'Delivery',
+                    text: StringKey.delivery.tr,
                     color: ColorSelect.textColor,
                     fontsize: 17,
                     textAlign: TextAlign.left,
@@ -323,11 +324,11 @@ class _ConfirmViewState extends State<ConfirmView> {
                                 children: [
                                   CustomText(
                                     text: controller.statePrice == 0
-                                        ? 'Free'
+                                        ? StringKey.free.tr
                                         : controller.statePrice == 1
-                                            ? 'Standard'
+                                            ? StringKey.standard.tr
                                             : controller.statePrice == 2
-                                                ? 'Express'
+                                                ? StringKey.express.tr
                                                 : '',
                                     color: ColorSelect.textColor,
                                     fontsize: 16,
@@ -338,11 +339,11 @@ class _ConfirmViewState extends State<ConfirmView> {
                                   ),
                                   CustomText(
                                     text: controller.statePrice == 0
-                                        ? '3-5 day delivery'
+                                        ? '3-5 ${StringKey.dayDelivery.tr}'
                                         : controller.statePrice == 1
-                                            ? '2-3 day delivery'
+                                            ? '2-3 ${StringKey.dayDelivery.tr}'
                                             : controller.statePrice == 2
-                                                ? 'Next day delivery'
+                                                ? '${StringKey.next.tr} ${StringKey.dayDelivery.tr}'
                                                 : '',
                                     color: ColorSelect.TextNewArrival,
                                     fontsize: 16,
@@ -365,7 +366,7 @@ class _ConfirmViewState extends State<ConfirmView> {
                   init: CheckOutViewModel(),
                   builder: (controller) {
                     return Container(
-                      height: 160,
+                      height: 170,
                       width: double.infinity,
                       padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.03,
@@ -387,7 +388,7 @@ class _ConfirmViewState extends State<ConfirmView> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 CustomText(
-                                  text: 'Total:',
+                                  text: StringKey.total.tr,
                                   color: ColorSelect.textColor,
                                   fontsize: 17,
                                   textAlign: TextAlign.center,
@@ -417,7 +418,7 @@ class _ConfirmViewState extends State<ConfirmView> {
                               init: ShoppingViewModel(),
                               builder: (logic) {
                                 return CustomBotton(
-                                  text: 'Order now',
+                                  text: StringKey.ordernow.tr,
                                   width: double.infinity,
                                   height: 48,
                                   fontWeight: FontWeight.w600,

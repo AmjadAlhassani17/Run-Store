@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/dio_method_view_model.dart';
+import '../../../../utils/locale/language_all.dart';
 import '../../../../utils/utils.dart';
 import '../../../model/cart_product_model.dart';
 import '../../../view_model/cart_view_model.dart';
@@ -62,7 +63,7 @@ class _ManSupCategoryViewState extends State<ManSupCategoryView> {
                 ),
               ),
               title: CustomText(
-                text: 'Category',
+                text: StringKey.category.tr,
                 color: ColorSelect.textColor,
                 fontsize: 17,
                 textAlign: TextAlign.center,
@@ -79,7 +80,7 @@ class _ManSupCategoryViewState extends State<ManSupCategoryView> {
               height: 24,
             ),
             CustomText(
-              text: 'Man',
+              text: StringKey.men.tr,
               color: ColorSelect.textColor,
               fontsize: 34,
               textAlign: TextAlign.center,
@@ -360,20 +361,18 @@ class _ManSupCategoryViewState extends State<ManSupCategoryView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                        width: 250,
-                                        child: CustomText(
-                                          text: ManSupCategoryView
-                                              .dioMethods.supman
-                                              .elementAt(index)
-                                              .title,
-                                          color: ColorSelect.TextNewArrival,
-                                          fontsize: 16,
-                                          textAlign: TextAlign.left,
-                                          fontWeight: FontWeight.w400,
-                                          textOverflow: TextOverflow.ellipsis,
-                                          height: 0.0,
-                                        )),
+                                    CustomText(
+                                      text: ManSupCategoryView
+                                          .dioMethods.supman
+                                          .elementAt(index)
+                                          .title,
+                                      color: ColorSelect.TextNewArrival,
+                                      fontsize: 16,
+                                      textAlign: TextAlign.left,
+                                      fontWeight: FontWeight.w400,
+                                      textOverflow: TextOverflow.ellipsis,
+                                      height: 0.0,
+                                    ),
                                     CustomPriceWithLine(
                                       text:
                                           '\$${ManSupCategoryView.dioMethods.supman.elementAt(index).price + 56}',

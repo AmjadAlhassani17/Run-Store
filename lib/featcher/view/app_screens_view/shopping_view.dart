@@ -5,6 +5,7 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/app_screens_view/sup_category_view/man_sup_category_view.dart';
 import 'package:runstore/featcher/view/widgets/custom_button.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../../../utils/utils.dart';
 import '../../core/path/svgs_path.dart';
 import '../../model/product_data_model.dart';
@@ -68,7 +69,7 @@ class _ShoppingViewState extends State<ShoppingView> {
                   width: 48,
                 ),
                 title: CustomText(
-                  text: 'Shopping cart',
+                  text: StringKey.shoppingCart.tr,
                   color: ColorSelect.textColor,
                   fontsize: 17,
                   textAlign: TextAlign.center,
@@ -132,7 +133,7 @@ class _ShoppingViewState extends State<ShoppingView> {
                                 height: 0.0,
                               ),
                               title: CustomText(
-                                text: 'In your cart',
+                                text: StringKey.inYourCart.tr,
                                 color: ColorSelect.textColor,
                                 fontsize: 17,
                                 textAlign: TextAlign.left,
@@ -334,7 +335,7 @@ class _ShoppingViewState extends State<ShoppingView> {
                           color: ColorSelect.iconPerson,
                         ),
                         child: CustomBotton(
-                          text: 'Go to checkout  - \$${controller.totalPrice}',
+                          text: '${StringKey.goToCheckout.tr}  - \$${controller.totalPrice}',
                           width: MediaQuery.of(context).size.width * 0.12,
                           height: 48,
                           fontWeight: FontWeight.w600,
@@ -683,7 +684,7 @@ class _ShoppingViewState extends State<ShoppingView> {
               width: 48,
             ),
             title: CustomText(
-              text: 'Shopping cart',
+              text: StringKey.shoppingCart.tr,
               color: ColorSelect.textColor,
               fontsize: 17,
               textAlign: TextAlign.center,
@@ -754,7 +755,7 @@ class _ShoppingViewState extends State<ShoppingView> {
                                 children: [
                                   CustomText(
                                     height: 0.0,
-                                    text: 'Cart Shopping Empty',
+                                    text: StringKey.cartEmpty.tr,
                                     textOverflow: TextOverflow.clip,
                                     fontsize: 20,
                                     color: ColorSelect.primarycolor,
@@ -793,7 +794,7 @@ class _ShoppingViewState extends State<ShoppingView> {
                           color: ColorSelect.iconPerson,
                         ),
                         child: CustomBotton(
-                          text: 'Go to checkout  - \$${controller.totalPrice} ',
+                          text: '${StringKey.goToCheckout.tr}  - \$${controller.totalPrice} ',
                           width: MediaQuery.of(context).size.width * 0.12,
                           height: 48,
                           fontWeight: FontWeight.w600,

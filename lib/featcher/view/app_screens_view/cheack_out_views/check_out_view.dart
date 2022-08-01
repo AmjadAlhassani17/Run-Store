@@ -4,6 +4,7 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/app_screens_view/cheack_out_views/body_view/address_view.dart';
 import 'package:runstore/featcher/view/app_screens_view/cheack_out_views/body_view/confirm_view.dart';
 import 'package:runstore/featcher/view/app_screens_view/cheack_out_views/body_view/delivery_view.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../../../view_model/check_out_view_model.dart';
 import '../../widgets/custom_text.dart';
 
@@ -61,7 +62,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                     ),
                   ),
                   title: CustomText(
-                    text: controller.state == 0 ? 'Address' : controller.state == 1 ? 'Delivery' : controller.state == 2 ? 'Confirm order' : '',
+                    text: controller.state == 0 ? StringKey.address.tr : controller.state == 1 ? StringKey.delivery.tr : controller.state == 2 ? StringKey.confirmOrder.tr : '',
                     color: ColorSelect.textColor,
                     fontsize: 17,
                     textAlign: TextAlign.center,
@@ -147,9 +148,9 @@ class _CheckOutViewState extends State<CheckOutView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomText(text: 'Address', color: controller.state == 0 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
-                            CustomText(text: 'Delivery', color: controller.state == 1 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
-                            CustomText(text: 'Confirm', color: controller.state == 2 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
+                            CustomText(text: StringKey.address.tr, color: controller.state == 0 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
+                            CustomText(text: StringKey.delivery.tr, color: controller.state == 1 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
+                            CustomText(text: StringKey.confirm.tr, color: controller.state == 2 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
                           ],
                         ),
                       ),

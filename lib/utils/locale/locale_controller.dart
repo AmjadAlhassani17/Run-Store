@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../shared/shared_preferance.dart';
 
 class MyLocaleController extends GetxController{

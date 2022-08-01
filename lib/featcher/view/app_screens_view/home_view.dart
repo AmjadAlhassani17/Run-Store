@@ -12,6 +12,7 @@ import 'package:runstore/featcher/view/app_screens_view/tabbar_screens_view/man_
 import 'package:runstore/featcher/view/app_screens_view/tabbar_screens_view/woman_view.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/get_data_user_view_model.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -61,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
                       ),
                       title: CustomText(
                         text:
-                            'Hi, ${FirebaseAuth.instance.currentUser?.displayName}!',
+                            '${StringKey.hi.tr}, ${FirebaseAuth.instance.currentUser?.displayName}!',
                         color: ColorSelect.textColor,
                         fontsize: 17,
                         textAlign: TextAlign.center,
@@ -116,7 +117,7 @@ class _HomeViewState extends State<HomeView> {
                           tabs: [
                             Tab(
                               child: CustomText(
-                                text: 'All',
+                                text: StringKey.all.tr,
                                 color: ColorSelect.blackColor,
                                 fontsize: 12,
                                 textAlign: TextAlign.center,
@@ -127,7 +128,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Tab(
                               child: CustomText(
-                                text: 'Men',
+                                text: StringKey.men.tr,
                                 color: ColorSelect.blackColor,
                                 fontsize: 12,
                                 textAlign: TextAlign.center,
@@ -138,7 +139,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Tab(
                               child: CustomText(
-                                text: 'Women',
+                                text: StringKey.women.tr,
                                 color: ColorSelect.blackColor,
                                 fontsize: 12,
                                 textAlign: TextAlign.center,
@@ -149,7 +150,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Tab(
                               child: CustomText(
-                                text: 'Kid',
+                                text: StringKey.kid.tr,
                                 color: ColorSelect.blackColor,
                                 fontsize: 12,
                                 textAlign: TextAlign.center,

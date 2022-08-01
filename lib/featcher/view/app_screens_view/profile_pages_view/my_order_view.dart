@@ -5,6 +5,7 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/app_screens_view/sup_category_view/man_sup_category_view.dart';
 import 'package:runstore/featcher/view/widgets/custom_button.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../../../../utils/utils.dart';
 import '../../../core/path/svgs_path.dart';
 import '../../../model/product_data_model.dart';
@@ -93,7 +94,7 @@ class _MyOrderState extends State<MyOrder> {
                     ),
                   ),
                   title: CustomText(
-                    text: 'Shopping cart',
+                    text: StringKey.shoppingCart.tr,
                     color: ColorSelect.textColor,
                     fontsize: 17,
                     textAlign: TextAlign.center,
@@ -138,7 +139,7 @@ class _MyOrderState extends State<MyOrder> {
                                   height: 0.0,
                                 ),
                                 title: CustomText(
-                                  text: 'In your cart',
+                                  text: StringKey.inYourCart.tr,
                                   color: ColorSelect.textColor,
                                   fontsize: 17,
                                   textAlign: TextAlign.left,
@@ -266,31 +267,7 @@ class _MyOrderState extends State<MyOrder> {
                                               ],
                                             ),
                                           ),
-                                          InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                controller.deleteProduct(
-                                                    controller.cart
-                                                            .elementAt(index)
-                                                            .id ??
-                                                        0);
-                                              });
-                                            },
-                                            child: Container(
-                                              height: 48,
-                                              width: 48,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(12),
-                                                ),
-                                                color: ColorSelect.iconPerson,
-                                              ),
-                                              child: Icon(
-                                                Icons.delete,
-                                                color: ColorSelect.primarycolor,
-                                              ),
-                                            ),
-                                          ),
+                                          
                                         ],
                                       ),
                                     ),
@@ -328,7 +305,7 @@ class _MyOrderState extends State<MyOrder> {
                       ),
                       padding: EdgeInsets.symmetric(vertical: 20),
                       child: CustomBotton(
-                        text: 'total price  - \$${controller.totalPrice}',
+                        text: '${StringKey.total.tr}  - \$${controller.totalPrice}',
                         width: MediaQuery.of(context).size.width * 0.12,
                         height: MediaQuery.of(context).size.height * 0.090,
                         fontWeight: FontWeight.w600,
@@ -681,7 +658,7 @@ class _MyOrderState extends State<MyOrder> {
                     ),
                   ),
             title: CustomText(
-              text: 'Shopping cart',
+              text: StringKey.shoppingCart.tr,
               color: ColorSelect.textColor,
               fontsize: 17,
               textAlign: TextAlign.center,
@@ -689,30 +666,12 @@ class _MyOrderState extends State<MyOrder> {
               textOverflow: TextOverflow.clip,
               height: 0.0,
             ),
-            trailing: InkWell(
-              onTap: () => Get.to(() => ManSupCategoryView()),
-              child: Container(
+            trailing:Container(
                 height: 48,
                 width: 48,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  color: ColorSelect.whiteColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.15),
-                      spreadRadius: 0,
-                      blurRadius: 10,
-                      offset: Offset(0, 0.75),
-                    ),
-                  ],
-                ),
-                child: Icon(
-                  Icons.add_outlined,
-                  color: ColorSelect.blackColor,
-                  size: 30,
-                ),
+
               ),
-            ),
+            
           ),
           SizedBox(
             height: 35,
@@ -753,7 +712,7 @@ class _MyOrderState extends State<MyOrder> {
                             children: [
                               CustomText(
                                 height: 0.0,
-                                text: 'Cart Shopping Empty',
+                                text: StringKey.cartEmpty.tr,
                                 textOverflow: TextOverflow.clip,
                                 fontsize: 20,
                                 color: ColorSelect.primarycolor,
@@ -793,7 +752,7 @@ class _MyOrderState extends State<MyOrder> {
                           ),
                           padding: EdgeInsets.symmetric(vertical: 20),
                           child: CustomBotton(
-                            text: 'total price  - \$${logic.totalPrice}',
+                            text: '${StringKey.total.tr}  - \$${logic.totalPrice}',
                             width: MediaQuery.of(context).size.width * 0.12,
                             height: MediaQuery.of(context).size.height * 0.090,
                             fontWeight: FontWeight.w600,

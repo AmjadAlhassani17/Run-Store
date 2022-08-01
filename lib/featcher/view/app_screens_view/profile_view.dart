@@ -6,6 +6,7 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/app_screens_view/profile_pages_view/language_view.dart';
 import 'package:runstore/featcher/view/app_screens_view/profile_pages_view/my_order_view.dart';
 import 'package:runstore/featcher/view_model/get_data_user_view_model.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../../../utils/utils.dart';
 import '../../core/path/svgs_path.dart';
 import '../../view_model/addimage_view_model.dart';
@@ -39,7 +40,7 @@ class ProfileView extends StatelessWidget {
                       width: 48,
                     ),
                     title: CustomText(
-                      text: 'Profile',
+                      text: StringKey.profile.tr,
                       color: ColorSelect.textColor,
                       fontsize: 17,
                       textAlign: TextAlign.center,
@@ -88,7 +89,7 @@ class ProfileView extends StatelessWidget {
                                             color: ColorSelect.textColor,
                                           ),
                                           title: CustomText(
-                                            text: 'Camera',
+                                            text: StringKey.camera.tr,
                                             color: ColorSelect.blackColor,
                                             fontsize: 20,
                                             textAlign: TextAlign.left,
@@ -122,7 +123,7 @@ class ProfileView extends StatelessWidget {
                                             color: ColorSelect.textColor,
                                           ),
                                           title: CustomText(
-                                            text: 'Gallery',
+                                            text: StringKey.gallery.tr,
                                             color: ColorSelect.blackColor,
                                             fontsize: 20,
                                             textAlign: TextAlign.left,
@@ -198,7 +199,7 @@ class ProfileView extends StatelessWidget {
                         child: Column(
                           children: [
                             CustomListTail(
-                              name: 'My Card',
+                              name: StringKey.cart.tr,
                               svg: SvgsPath.order,
                               trailing: () => Get.to(() => MyOrder()),
                               listTile: () => Get.to(() => MyOrder()),
@@ -207,7 +208,7 @@ class ProfileView extends StatelessWidget {
                               height: 20,
                             ),
                             CustomListTail(
-                              name: 'Language',
+                              name: StringKey.language.tr,
                               svg: SvgsPath.language,
                               trailing: () => Get.to(() => LanguageView()),
                               listTile: () => Get.to(() => LanguageView()),
@@ -216,7 +217,7 @@ class ProfileView extends StatelessWidget {
                               height: 20,
                             ),
                             CustomListTail(
-                              name: 'Payment',
+                              name: StringKey.payment.tr,
                               svg: SvgsPath.payment,
                               trailing: () => Get.to(() => CheckOutView()),
                               listTile: () => Get.to(() => CheckOutView()),
@@ -225,7 +226,7 @@ class ProfileView extends StatelessWidget {
                               height: 20,
                             ),
                             CustomListTail(
-                              name: 'Volunteer Support',
+                              name: StringKey.volunteerSupports.tr,
                               svg: SvgsPath.chat,
                               trailing: () {},
                               listTile: () {},
@@ -234,13 +235,13 @@ class ProfileView extends StatelessWidget {
                               height: 20,
                             ),
                             CustomListTail(
-                              name: 'Log Out',
+                              name: StringKey.logout.tr,
                               svg: SvgsPath.filter,
                               trailing: () {
-                                Utils.instance.showAlertDialog(title: 'Delete Account', body: 'Are You sure delete account?', positiveButtonText: 'done', positiveButtonOnPressed: (){controller.signOut();});
+                                Utils.instance.showAlertDialog(title: StringKey.deleteAccount.tr, body: StringKey.checkDelete.tr, positiveButtonText: StringKey.done.tr, positiveButtonOnPressed: (){controller.signOut();Get.back();});
                               },
                               listTile: () {
-                                Utils.instance.showAlertDialog(title: 'Delete Account', body: 'Are You sure delete account?', positiveButtonText: 'done', positiveButtonOnPressed: (){controller.signOut();});
+                                Utils.instance.showAlertDialog(title: StringKey.deleteAccount.tr, body: StringKey.checkDelete.tr, positiveButtonText: StringKey.done.tr, positiveButtonOnPressed: (){controller.signOut();Get.back();});
                               },
                             ),
                             SizedBox(
