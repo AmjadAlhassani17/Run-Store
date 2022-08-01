@@ -21,5 +21,12 @@ class SvgsPath {
   static const String shipping = "assets/svgs/Shipping.svg";
   static const String checkmark = "assets/svgs/Checkmark.svg";
   static const String checkmarkdone = "assets/svgs/Checkmarkdone.svg";
+  static const String bell = "assets/svgs/Bell.svg";
+  static const String order = "assets/svgs/Order.svg";
+  static const String location = "assets/svgs/Location.svg";
+  static const String payment = "assets/svgs/Credit card.svg";
+  static const String filter = "assets/svgs/Filter.svg";
+  static const String chat = "assets/svgs/chat.svg";
+  static const String language = "assets/svgs/language.svg";
 
 }

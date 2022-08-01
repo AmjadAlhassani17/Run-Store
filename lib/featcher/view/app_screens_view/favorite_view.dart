@@ -9,7 +9,6 @@ import 'package:runstore/featcher/view/app_screens_view/sup_category_view/man_su
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/cart_view_model.dart';
 import 'package:runstore/utils/utils.dart';
-
 import '../../view_model/dio_method_view_model.dart';
 import 'details_about_item_view.dart';
 

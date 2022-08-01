@@ -15,6 +15,7 @@ class ContainerWithShadow extends StatelessWidget {
   String price;
   String pathSvg;
   String text;
+  
 
   @override
   Widget build(BuildContext context) {

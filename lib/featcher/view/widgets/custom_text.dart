@@ -31,7 +31,6 @@ class CustomText extends StatelessWidget {
         height: height,
       ),
       textAlign: textAlign,
-      
     );
   }
 }

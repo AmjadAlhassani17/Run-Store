@@ -16,6 +16,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: TheamData.instance.materialTheme,
       home:  ControlView(),
+      smartManagement: SmartManagement.keepFactory,
       locale: viewModel.intiallanguage,
       translations: MyLocale(),
     );

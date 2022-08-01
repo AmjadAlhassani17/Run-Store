@@ -23,7 +23,7 @@ class ProductData {
   dynamic price;
   String description;
   Category category;
-  List<String> images;
+  List<dynamic> images;
   int categoryId;
 
   @override
@@ -39,7 +39,7 @@ class ProductData {
         price: json["price"],
         description: json["description"],
         category: Category.fromJson(json["category"]),
-        images: List<String>.from(json["images"].map((x) => x)),
+        images: List<dynamic>.from(json["images"].map((x) => x)),
         categoryId: json["categoryId"],
       );
 

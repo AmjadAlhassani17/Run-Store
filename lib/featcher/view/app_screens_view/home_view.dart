@@ -239,14 +239,14 @@ class _HomeViewState extends State<HomeView> {
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high , forceAndroidLocationManager: true);
     List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
     print(placemarks);
-    Placemark place = placemarks[1];
+    print(placemarks.length);
+    Placemark place;
+    placemarks.length == 1  ? place = placemarks[0] : place = placemarks[1];
     Address = '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
     HomeView.addressName = place.name!;
     HomeView.cityName = place.country!;
     HomeView.stateName = place.subLocality!;
     HomeView.zipCode = place.postalCode!;
-    setState(()  {
-    });
   }
 
 }

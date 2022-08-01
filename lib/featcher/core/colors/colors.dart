@@ -35,5 +35,6 @@ abstract class ColorSelect {
   static const TextKid = Color.fromRGBO(80, 36, 143, 0.6);
   static const TextKidButton = Color.fromRGBO(156, 106, 222, 1);
   static const curserColor = Color.fromRGBO(32, 46, 120, 1);
+  static const ImageColor = Color.fromRGBO(77,180,232,1);
 
 }

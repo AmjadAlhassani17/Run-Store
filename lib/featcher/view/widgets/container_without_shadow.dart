@@ -11,11 +11,12 @@ class ContainerWithOutShadow extends StatelessWidget {
       {Key? key,
       required this.text,
       required this.price,
-      required this.pathSvg})
+      required this.pathSvg,})
       : super(key: key);
   String price;
   String text;
   String pathSvg;
+
 
   @override
   Widget build(BuildContext context) {

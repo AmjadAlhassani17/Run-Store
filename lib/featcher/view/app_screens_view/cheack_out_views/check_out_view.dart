@@ -4,7 +4,6 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/app_screens_view/cheack_out_views/body_view/address_view.dart';
 import 'package:runstore/featcher/view/app_screens_view/cheack_out_views/body_view/confirm_view.dart';
 import 'package:runstore/featcher/view/app_screens_view/cheack_out_views/body_view/delivery_view.dart';
-import 'package:runstore/featcher/view/app_screens_view/cheack_out_views/body_view/payment_view.dart';
 import '../../../view_model/check_out_view_model.dart';
 import '../../widgets/custom_text.dart';
 
@@ -53,7 +52,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                       ],
                     ),
                     child: InkWell(
-                      onTap: () => Get.back(),
+                      onTap: () => controller.state > 0 ? controller.changeStateCheckOut(index: controller.state - 1) : Get.back(),
                       child: Icon(
                         Icons.arrow_back_ios_outlined,
                         color: ColorSelect.blackColor,
@@ -62,7 +61,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                     ),
                   ),
                   title: CustomText(
-                    text: controller.state == 0 ? 'Address' : controller.state == 1 ? 'Delivery' : controller.state == 2 ? 'Payment' : controller.state == 3 ? 'Confirm'  : '',
+                    text: controller.state == 0 ? 'Address' : controller.state == 1 ? 'Delivery' : controller.state == 2 ? 'Confirm order' : '',
                     color: ColorSelect.textColor,
                     fontsize: 17,
                     textAlign: TextAlign.center,
@@ -135,20 +134,6 @@ class _CheckOutViewState extends State<CheckOutView> {
                                 ),
                               ),
                             ),
-                            Container(
-                              height: 25,
-                              width: 25,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: controller.state > 2
-                                    ? ColorSelect.primarycolor
-                                    : Colors.white,
-                                border: Border.all(
-                                  color: ColorSelect.primarycolor,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
                             
                         ],
                       ),
@@ -164,13 +149,12 @@ class _CheckOutViewState extends State<CheckOutView> {
                           children: [
                             CustomText(text: 'Address', color: controller.state == 0 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
                             CustomText(text: 'Delivery', color: controller.state == 1 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
-                            CustomText(text: 'Payment', color: controller.state == 2 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
-                            CustomText(text: 'Confirm', color: controller.state == 3 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
+                            CustomText(text: 'Confirm', color: controller.state == 2 ? ColorSelect.primarycolor : ColorSelect.unSelect, fontsize: 14, textAlign: TextAlign.center, fontWeight: FontWeight.w400, textOverflow: TextOverflow.clip, height: 0.0,),
                           ],
                         ),
                       ),
                 const SizedBox(height: 50,),
-                controller.state == 0 ? AddressView() : controller.state == 1 ? DeliveryView() : controller.state == 2 ? PaymentView() : controller.state == 3 ? ConfirmView()  : Container(),
+                controller.state == 0 ? AddressView() : controller.state == 1 ? DeliveryView() : controller.state == 2 ? ConfirmView()  : Container(),
               ],
             ),
           ),

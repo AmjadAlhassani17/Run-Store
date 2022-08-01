@@ -16,7 +16,6 @@ class ShoppingViewModel extends GetxController {
     getAllProduct();
   }
   static var db = ShoppingDatabase.instance;
-
   getAllProduct() async {
     cart.clear();
     _loading.value = true;

@@ -14,25 +14,24 @@ class AddressView extends StatefulWidget {
   AddressView({Key? key}) : super(key: key);
   static final CheckOutViewModel checkOutViewModel =
       Get.find<CheckOutViewModel>();
+  static final TextEditingController address =
+      TextEditingController(text: '${HomeView.addressName}');
+      
+  static final TextEditingController city =
+      TextEditingController(text: '${HomeView.cityName}');
+  static final TextEditingController zip =
+      TextEditingController(text: '${HomeView.zipCode}');
+  static final TextEditingController name = TextEditingController(
+      text: '${FirebaseAuth.instance.currentUser?.displayName}');
+  static final TextEditingController state =
+      TextEditingController(text: '${HomeView.stateName}');
+  static final TextEditingController phoneNumber = TextEditingController();
 
   @override
   State<AddressView> createState() => _AddressViewState();
 }
 
 class _AddressViewState extends State<AddressView> {
-
-  TextEditingController address = TextEditingController(text: '${HomeView.addressName}');
-
-  TextEditingController city = TextEditingController(text: '${HomeView.cityName}');
-
-  TextEditingController zip = TextEditingController(text: '${HomeView.zipCode}');
-
-  TextEditingController name = TextEditingController(text: '${FirebaseAuth.instance.currentUser?.displayName}');
-
-  TextEditingController state = TextEditingController(text: '${HomeView.stateName}');
-
-  TextEditingController phoneNumber = TextEditingController();
-
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -57,9 +56,7 @@ class _AddressViewState extends State<AddressView> {
               Form(
                 key: formKey,
                 child: Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.18,
-                      right: MediaQuery.of(context).size.width * 0.0),
+                  padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +69,7 @@ class _AddressViewState extends State<AddressView> {
                               width: MediaQuery.of(context).size.width * 0.6,
                               child: TextFormField(
                                 cursorColor: ColorSelect.primarycolor,
-                                controller: name,
+                                controller: AddressView.name,
                                 obscureText: false,
                                 validator: (value) {
                                   if (value!.isEmpty ||
@@ -123,7 +120,7 @@ class _AddressViewState extends State<AddressView> {
                               width: MediaQuery.of(context).size.width * 0.6,
                               child: TextFormField(
                                 cursorColor: ColorSelect.primarycolor,
-                                controller: address,
+                                controller: AddressView.address,
                                 obscureText: false,
                                 validator: (value) {
                                   if (value!.isEmpty ||
@@ -175,11 +172,10 @@ class _AddressViewState extends State<AddressView> {
                                 width: MediaQuery.of(context).size.width * 0.6,
                                 child: TextFormField(
                                   cursorColor: ColorSelect.primarycolor,
-                                  controller: city,
+                                  controller: AddressView.city,
                                   obscureText: false,
                                   validator: (value) {
-                                    if (value!.isEmpty ||
-                                        value.toString().length < 6) {
+                                    if (value!.isEmpty) {
                                       return 'Enter correct city.';
                                     } else {
                                       return null;
@@ -227,7 +223,7 @@ class _AddressViewState extends State<AddressView> {
                                 width: MediaQuery.of(context).size.width * 0.20,
                                 child: TextFormField(
                                   cursorColor: ColorSelect.primarycolor,
-                                  controller: zip,
+                                  controller: AddressView.zip,
                                   obscureText: false,
                                   validator: (value) {
                                     if (value!.isEmpty ||
@@ -279,11 +275,10 @@ class _AddressViewState extends State<AddressView> {
                               width: MediaQuery.of(context).size.width * 0.6,
                               child: TextFormField(
                                 cursorColor: ColorSelect.primarycolor,
-                                controller: state,
+                                controller: AddressView.state,
                                 obscureText: false,
                                 validator: (value) {
-                                  if (value!.isEmpty ||
-                                      value.toString().length < 6) {
+                                  if (value!.isEmpty) {
                                     return 'Enter correct state.';
                                   } else {
                                     return null;
@@ -330,7 +325,7 @@ class _AddressViewState extends State<AddressView> {
                               width: MediaQuery.of(context).size.width * 0.6,
                               child: TextFormField(
                                 cursorColor: ColorSelect.primarycolor,
-                                controller: phoneNumber,
+                                controller: AddressView.phoneNumber,
                                 obscureText: false,
                                 validator: (value) {
                                   if (value!.isEmpty ||
@@ -385,19 +380,20 @@ class _AddressViewState extends State<AddressView> {
                 init: CheckOutViewModel(),
                 builder: (controller) {
                   return Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.05),
                     child: CustomBotton(
                       text: 'Next',
                       width: double.infinity,
                       height: 48,
                       fontWeight: FontWeight.w600,
                       function: () {
-                        // formKey.currentState!.save();
-                        //           if (formKey.currentState!
-                        //               .validate()) {
-                        //             controller.changeStateCheckOut(index: 1);
-                        //           }
-                         controller.changeStateCheckOut(index: 1);
+                        formKey.currentState!.save();
+                                  if (formKey.currentState!
+                                      .validate()) {
+                                    controller.changeStateCheckOut(index: 1);
+                                  }
+                        // controller.changeStateCheckOut(index: 1);
                       },
                       color: ColorSelect.whiteColor,
                       backgroundcolor: ColorSelect.primarycolor,
@@ -413,6 +409,4 @@ class _AddressViewState extends State<AddressView> {
       ),
     );
   }
-
-  
 }

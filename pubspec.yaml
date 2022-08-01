@@ -40,6 +40,7 @@ dependencies:
   firebase_core: ^1.19.2
   firebase_auth: ^3.4.2
   cloud_firestore: ^3.3.0
+  firebase_storage: ^10.2.18
   firebase_crashlytics: ^2.8.2
   google_sign_in: ^5.4.0
   flutter_facebook_auth: ^4.4.0+1
@@ -52,6 +53,8 @@ dependencies:
   geolocator: ^8.2.1
   permission_handler: ^10.0.0
   app_settings: ^4.1.8
+  my_fatoorah: ^3.0.11
+  image_picker: ^0.8.5+3
   
   
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
+import 'package:runstore/featcher/view/widgets/custom_text.dart';
 
 import '../featcher/core/path/images_path.dart';
 class Utils {
@@ -21,14 +22,15 @@ class Utils {
 
   void showAlertDialog({required String title, required String body, required String positiveButtonText, required void Function() positiveButtonOnPressed, String? negativeButtonText, void Function()? negativeButtonOnPressed}){
     Get.dialog(AlertDialog(
-      backgroundColor: Theme.of(Get.context!).scaffoldBackgroundColor,
-      title: Text(title, textAlign: TextAlign.center, style: Theme.of(Get.context!).textTheme.headline4,),
-      content: Text(body, textAlign: TextAlign.center, style: Theme.of(Get.context!).textTheme.bodyText1, maxLines: 5,),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+      backgroundColor: ColorSelect.primarycolor,
+      title: CustomText(text: title, color: ColorSelect.whiteColor, fontsize: 30, textAlign: TextAlign.center, fontWeight: FontWeight.w600, textOverflow: TextOverflow.ellipsis, height: 0.0,),
+      content: CustomText(text: body, color: ColorSelect.whiteColor, fontsize: 12, textAlign: TextAlign.center, fontWeight: FontWeight.normal, textOverflow: TextOverflow.ellipsis, height: 0.0,),
       actions: [
-        TextButton(onPressed: positiveButtonOnPressed, child: Text(positiveButtonText)),
+        TextButton(onPressed: positiveButtonOnPressed, child: Text(positiveButtonText , style: TextStyle(color: ColorSelect.whiteColor),)),
         Visibility(
           visible: negativeButtonOnPressed != null && negativeButtonText != null,
-          child: TextButton(onPressed: negativeButtonOnPressed, child: Text(negativeButtonText ?? '')))
+          child: TextButton(onPressed: negativeButtonOnPressed, child: Text(negativeButtonText ?? '' , style: TextStyle(color: ColorSelect.whiteColor),)))
         ],
     ));
   }
