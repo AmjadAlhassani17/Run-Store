@@ -101,6 +101,10 @@ abstract class StringKey{
   static String freeReturn = 'free returns and exchange';
   static String ordernow = 'Order now';
   static String category = 'Category';
+  static String search = 'Search result';
+  static String addCart = 'Add to Cart';
+  static String aboutBrand = 'About brand';
+  static String shipping = 'Shipping';
 
 
 }

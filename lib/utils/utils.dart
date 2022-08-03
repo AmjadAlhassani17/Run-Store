@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
-
-import '../featcher/core/path/images_path.dart';
 class Utils {
 
   Utils._();
@@ -62,18 +60,9 @@ class Utils {
           ),
         );
       },
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyjjfDvf4erXDIM7vd-vYKz6s0F0AHpDI1JA&usqp=CAU',
+      imageUrl: 'https://demofree.sirv.com/nope-not-here.jpg',
       errorWidget: (context, url, error) {
-        return CachedNetworkImage(
-            imageUrl: ImagesPath.error,
-            errorWidget: (context, url, error) {
-              return SizedBox(
-                height: height,
-                width: width,
-                child: const Text("image"),
-              );
-            },
-            fit: BoxFit.contain);
+        return new Icon(Icons.error);
       },
       fit: BoxFit.cover,
       placeholder: (context, String? url) {

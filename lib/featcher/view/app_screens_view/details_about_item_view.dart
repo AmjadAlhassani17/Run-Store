@@ -9,6 +9,7 @@ import 'package:runstore/featcher/model/product_data_model.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
 import 'package:runstore/featcher/view_model/details_size_item_view_model.dart';
 import 'package:runstore/featcher/view_model/shopping_view-model.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../../../utils/utils.dart';
 import '../../model/cart_product_model.dart';
 import '../../view_model/cart_view_model.dart';
@@ -498,7 +499,7 @@ class _DetailsAboutItemViewState extends State<DetailsAboutItemView> {
                                             .getProduct(widget.productData.id),
                                         builder: (context, snapshot) {
                                           return CustomAddCart(
-                                            text: 'Add to cart',
+                                            text: StringKey.addCart.tr,
                                             image: SvgsPath.cart,
                                             width: double.infinity,
                                             height: 48,
@@ -578,7 +579,7 @@ class _DetailsAboutItemViewState extends State<DetailsAboutItemView> {
                                   ),
                                 ),
                                 title: CustomText(
-                                  text: 'About brand',
+                                  text: StringKey.aboutBrand.tr,
                                   color: ColorSelect.textColor,
                                   fontsize: 17,
                                   textAlign: TextAlign.left,
@@ -650,7 +651,7 @@ class _DetailsAboutItemViewState extends State<DetailsAboutItemView> {
                                   ),
                                 ),
                                 title: CustomText(
-                                  text: 'Shipping',
+                                  text: StringKey.shipping.tr,
                                   color: ColorSelect.textColor,
                                   fontsize: 17,
                                   textAlign: TextAlign.left,

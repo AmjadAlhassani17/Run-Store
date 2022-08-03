@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
+import 'package:runstore/featcher/view/app_screens_view/chat/chat_screen.dart';
 import 'package:runstore/featcher/view/app_screens_view/profile_pages_view/language_view.dart';
 import 'package:runstore/featcher/view/app_screens_view/profile_pages_view/my_order_view.dart';
 import 'package:runstore/featcher/view_model/get_data_user_view_model.dart';
@@ -228,8 +229,8 @@ class ProfileView extends StatelessWidget {
                             CustomListTail(
                               name: StringKey.volunteerSupports.tr,
                               svg: SvgsPath.chat,
-                              trailing: () {},
-                              listTile: () {},
+                              trailing: () {Get.to(() => ChatScreen());},
+                              listTile: () {Get.to(() => ChatScreen());},
                             ),
                             SizedBox(
                               height: 20,

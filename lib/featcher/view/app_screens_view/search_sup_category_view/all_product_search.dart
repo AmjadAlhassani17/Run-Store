@@ -126,7 +126,7 @@ class _AllProductSearchViewState extends State<AllProductSearchView> {
                                                   .display_list
                                                   .elementAt(index)
                                                   .images
-                                                  .first,
+                                                  .first ,
                                               fit: BoxFit.fill),
                                         ),
                                         Positioned(

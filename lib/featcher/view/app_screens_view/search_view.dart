@@ -8,6 +8,7 @@ import 'package:runstore/featcher/view/app_screens_view/search_sup_category_view
 import 'package:runstore/featcher/view/app_screens_view/search_sup_category_view/man_search.dart';
 import 'package:runstore/featcher/view/app_screens_view/search_sup_category_view/women_search.dart';
 import 'package:runstore/featcher/view_model/search_view_model.dart';
+import 'package:runstore/utils/locale/language_all.dart';
 import '../widgets/custom_text.dart';
 
 class SearchView extends StatefulWidget {
@@ -77,7 +78,7 @@ class _SearchViewState extends State<SearchView> with TickerProviderStateMixin {
                         ),
                       ),
                       title: CustomText(
-                        text: 'Search result',
+                        text: StringKey.search.tr,
                         color: ColorSelect.textColor,
                         fontsize: 17,
                         textAlign: TextAlign.center,
@@ -169,7 +170,7 @@ class _SearchViewState extends State<SearchView> with TickerProviderStateMixin {
                           tabs: [
                             Tab(
                               child: CustomText(
-                                text: 'All',
+                                text: StringKey.all.tr,
                                 color: ColorSelect.blackColor,
                                 fontsize: 12,
                                 textAlign: TextAlign.center,
@@ -180,7 +181,7 @@ class _SearchViewState extends State<SearchView> with TickerProviderStateMixin {
                             ),
                             Tab(
                               child: CustomText(
-                                text: 'Men',
+                                text: StringKey.men.tr,
                                 color: ColorSelect.blackColor,
                                 fontsize: 12,
                                 textAlign: TextAlign.center,
@@ -191,7 +192,7 @@ class _SearchViewState extends State<SearchView> with TickerProviderStateMixin {
                             ),
                             Tab(
                               child: CustomText(
-                                text: 'Women',
+                                text: StringKey.women.tr,
                                 color: ColorSelect.blackColor,
                                 fontsize: 12,
                                 textAlign: TextAlign.center,
@@ -202,7 +203,7 @@ class _SearchViewState extends State<SearchView> with TickerProviderStateMixin {
                             ),
                             Tab(
                               child: CustomText(
-                                text: 'Kid',
+                                text: StringKey.kid.tr,
                                 color: ColorSelect.blackColor,
                                 fontsize: 12,
                                 textAlign: TextAlign.center,

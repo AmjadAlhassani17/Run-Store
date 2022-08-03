@@ -112,6 +112,11 @@ class MyLocale implements Translations {
           StringKey.dayDelivery:'ايام توصيل',
           StringKey.ordernow:'أطلب الأن',
           StringKey.category: 'قائمة',
+          StringKey.search: 'ناتج البحث',
+          StringKey.addCart:'إضافة الي السلة',
+          StringKey.aboutBrand:'حول العلامة التجارية',
+          StringKey.shipping:'الشحن',
+
 
         },
         "en": {
@@ -222,6 +227,10 @@ class MyLocale implements Translations {
           StringKey.freeReturn:'free returns and exchange',
           StringKey.ordernow:'Order now',
           StringKey.category: 'Category',
+          StringKey.search: 'Search result',
+          StringKey.addCart:'Add to Cart',
+          StringKey.aboutBrand:'About brand',
+          StringKey.shipping:'Shipping',
 
         },
       };
