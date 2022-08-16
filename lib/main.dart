@@ -18,7 +18,9 @@ void main() async {
     Utils.instance.setScreenOriantaion();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorSelect.transparent,
-      statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: ColorSelect.primarycolor,
     ));
     await SharedPrefs.init();
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;

@@ -17,7 +17,7 @@ import 'cheack_out_views/check_out_view.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
-
+  
   static DataUser getDataViewModel = Get.put(DataUser(), permanent: true);
   // static addImageViewModel addimage = Get.put(addImageViewModel(),permanent: true);
   @override
