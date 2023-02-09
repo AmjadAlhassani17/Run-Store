@@ -23,7 +23,7 @@ class LanguageView extends StatefulWidget {
 enum SingingCharacter { one, two }
 
 class _LanguageViewState extends State<LanguageView> {
-  // bool ingoy = true;
+
   SingingCharacter? _character = SharedPrefs.instance.getLangState() == 'ar' ? SingingCharacter.one : SingingCharacter.two;
   @override
   Widget build(BuildContext context) {

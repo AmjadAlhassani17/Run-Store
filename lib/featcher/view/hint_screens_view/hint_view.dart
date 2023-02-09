@@ -61,9 +61,9 @@ class HintView extends StatelessWidget {
                       physics: const BouncingScrollPhysics(),
                       controller: pageController,
                       onPageChanged: (num) {
-                        controller.state = num ;
+                        controller.state = num;
                         controller.changeState(num);
-                      }),
+                      },),
                 ),
                 const SizedBox(
                   height: 40,
@@ -124,9 +124,7 @@ class HintView extends StatelessWidget {
                             const BorderRadius.all(Radius.circular(20)),
                       ),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
+
                   ],
                 ),
                 const SizedBox(

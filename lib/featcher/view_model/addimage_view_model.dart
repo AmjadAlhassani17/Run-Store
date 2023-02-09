@@ -27,7 +27,7 @@ class addImageViewModel extends GetxController {
     )}';
   }
 
-  File? imagePath;
+  File? imageFile;
   String? imagepath;
   final picker = ImagePicker();
   Future pickImage(ImageSource source) async {
@@ -35,7 +35,7 @@ class addImageViewModel extends GetxController {
       final image = await picker.pickImage(source: source);
       if (image == null) return;
       final imageTemporary = File(image.path);
-      imagePath = imageTemporary;
+      imageFile = imageTemporary;
     } on PlatformException catch (e) {
       // ignore: avoid_print
       print('Failed to pick image: $e');
@@ -50,18 +50,18 @@ class addImageViewModel extends GetxController {
         )
       },
     );
-    Constant.imagePath = imagePath;
+    Constant.imagePath = imageFile;
     update();
     Get.back();
   }
 
   String? imageUrl;
   Future<String?> uploadImage() async {
-    final fileName = basename(imagePath!.path);
+    final fileName = basename(imageFile!.path);
     final destination = 'files/$fileName';
     try {
       final ref = FirebaseStorage.instance.ref(destination).child("images/");
-      await ref.putFile(imagePath!);
+      await ref.putFile(imageFile!);
       imageUrl = await ref.getDownloadURL();
       // ignore: avoid_print
       print(imageUrl);

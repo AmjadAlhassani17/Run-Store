@@ -66,7 +66,7 @@ class _AllViewState extends State<AllView> {
                 ),
                 child: Image.asset(
                   ImagesPath.slider,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

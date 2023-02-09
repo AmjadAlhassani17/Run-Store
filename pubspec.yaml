@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.1
   shared_preferences: ^2.0.15
-  flutter_svg: ^1.0.3
+  flutter_svg: ^2.0.0+1
   firebase_core: ^1.19.2
   firebase_auth: ^3.4.2
   cloud_firestore: ^3.3.0
@@ -48,13 +48,16 @@ dependencies:
   logger: ^1.1.0
   cached_network_image: ^3.2.1
   sqflite: ^2.0.3
-  path: ^1.8.0
   geocoding: ^2.0.4
   geolocator: ^8.2.1
   permission_handler: ^10.0.0
   app_settings: ^4.1.8
   my_fatoorah: ^3.0.11
   image_picker: ^0.8.5+3
+  firebase_messaging: ^13.1.0
+  flutter_local_notifications: ^9.7.0
+  path: ^1.8.1
+  path_provider: ^2.0.11
   
   
 
@@ -67,6 +70,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -32,17 +32,18 @@ class WelcomeScreen extends StatelessWidget {
               ),
               Container(
                 decoration: ShapeDecoration(
-                    shadows: [
-                      BoxShadow(
-                        color: ColorSelect.blackColor.withOpacity(0.04),
-                        spreadRadius: 0,
-                        blurRadius: 15,
-                        offset: const Offset(0, 1),
-                      )
-                    ],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(200.0),
-                    )),
+                  shadows: [
+                    BoxShadow(
+                      color: ColorSelect.blackColor.withOpacity(0.04),
+                      spreadRadius: 0,
+                      blurRadius: 15,
+                      offset: const Offset(0, 1),
+                    )
+                  ],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(200.0),
+                  ),
+                ),
                 child: SvgPicture.asset(
                   SvgsPath.logo,
                   width: 124,
@@ -67,8 +68,7 @@ class WelcomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 45, right: 45),
                 child: CustomText(
-                  text:
-                      StringKey.discWelcome.tr,
+                  text: StringKey.discWelcome.tr,
                   color: ColorSelect.discriptiontextColor,
                   fontsize: 17,
                   textAlign: TextAlign.center,

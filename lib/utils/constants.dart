@@ -25,4 +25,6 @@ abstract class Constant{
   static String descriptionShop = 'description';
   static String imageShop = 'image';
   static var favShop = "Fav";
+
+  static int? lastNotificationId;
 }

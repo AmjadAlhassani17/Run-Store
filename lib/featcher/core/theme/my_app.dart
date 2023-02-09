@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:runstore/fcm/notifications_feature.dart';
 import 'package:runstore/featcher/core/theme/theam_data.dart';
 import 'package:runstore/featcher/view/control.dart';
 import '../../../utils/locale/locale.dart';
@@ -11,6 +12,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MyLocaleController viewModel = Get.put(MyLocaleController(), permanent: true);
+    NotificationFeature.getInstance.sendMessageToToken(title: "welcome", body: 'hassan');
     return GetMaterialApp(
       title: 'Run Store',
       debugShowCheckedModeBanner: false,

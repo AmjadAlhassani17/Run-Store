@@ -10,7 +10,6 @@
 
 linter:
   rules:
-    file_name: false
 
 
 

@@ -1,6 +1,12 @@
+import 'dart:convert';
+import 'dart:ui' as ui;
+import 'dart:io';
+import 'package:dio/dio.dart' as dio;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:path/path.dart' as path;
 import 'package:get/get.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/view/widgets/custom_text.dart';
@@ -105,5 +111,45 @@ class Utils {
 
   void hideProgressDialog(){
     Get.back();
+  }
+
+  Future<String?> download(String url) async {
+    dio.Response response = await dio.Dio().get(
+      url,
+      options: dio.Options(
+          responseType: dio.ResponseType.bytes,
+          followRedirects: false,
+          validateStatus: (status) {
+            return (status ?? 0) < 500;
+          }),
+    );
+    String imageName = path.basename(url);
+    Directory appDir = await path_provider.getApplicationDocumentsDirectory();
+    String localPath = path.join(appDir.path, imageName);
+    File imageFile = File(localPath);
+    var raf = imageFile.openSync(mode: FileMode.write);
+    //  response.data is List<int>;
+    raf.writeFromSync(response.data);
+    await raf.close();
+    return localPath;
+  }
+
+  String getBase64FormateFile(String path) {
+    File file = File(path);
+    print('File is = ' + file.toString());
+    List<int> fileInByte = file.readAsBytesSync();
+    String fileInBase64 = base64Encode(fileInByte,);
+    return fileInBase64;
+  }
+
+
+  Future<Uint8List> getBytesFormateFile(String path) async {
+    File file = File(path);
+    print('File is = ' + file.toString());
+    Uint8List bytes =  file.readAsBytesSync();
+    ByteData data = ByteData.view(bytes.buffer);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: 100 , targetHeight: 100);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
   }
 }

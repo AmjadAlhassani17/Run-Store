@@ -30,9 +30,9 @@ class CustomBotton extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15.0),
-          child: FlatButton(
+          child: ElevatedButton(
             onPressed: function,
-            height: 50,
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(ColorSelect.primarycolor)),
             child: CustomText(
               height: 1,
               color: color,

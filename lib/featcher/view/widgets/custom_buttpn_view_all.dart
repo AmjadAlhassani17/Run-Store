@@ -26,9 +26,8 @@ class CustomBottonViewAll extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
-        child: FlatButton(
+        child: ElevatedButton(
           onPressed: function,
-          height: 50,
           child: CustomText(
             height: 1,
             color: color,

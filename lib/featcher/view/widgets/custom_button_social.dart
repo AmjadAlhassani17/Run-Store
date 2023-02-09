@@ -31,9 +31,8 @@ class CustomBottonSocial extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15.0),
-          child: FlatButton(
+          child: ElevatedButton(
             onPressed: function,
-            height: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

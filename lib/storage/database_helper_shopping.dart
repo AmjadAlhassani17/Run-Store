@@ -93,4 +93,6 @@ class ShoppingDatabase {
     var db = await database;
     return await db?.delete(Constant.favShop, where: 'id = ?', whereArgs: [id]);
   }
+
+  
 }

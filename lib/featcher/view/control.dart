@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -17,7 +19,7 @@ class ControlView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-     Get.put(addImageViewModel(),permanent: true);
+    Get.put(addImageViewModel(),permanent: true);
     return Obx(() {
       return (authViewModel.user == null)
           ? WelcomeScreen()

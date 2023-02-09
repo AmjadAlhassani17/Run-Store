@@ -24,7 +24,7 @@ class CustomPriceWithLine extends StatelessWidget {
     return Text(
       text,
       overflow: textOverflow,
-      style: Theme.of(context).textTheme.headline5?.copyWith(
+      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
         color: color,
         fontSize: fontsize,
         fontWeight: FontWeight.bold,

@@ -176,7 +176,7 @@ class _ShoppingViewState extends State<ShoppingView> {
                                                 productData: productData,
                                               ));
                                         },
-                                        child: Container(
+                                     child: Container(///////////////////////////
                                           width: double.infinity,
                                           height: 150,
                                           color: ColorSelect.whiteColor,
