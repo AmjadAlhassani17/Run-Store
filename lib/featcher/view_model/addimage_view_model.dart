@@ -10,7 +10,7 @@ import 'package:runstore/featcher/view_model/fire_store_user.dart';
 import 'package:runstore/utils/constants.dart';
 
 // ignore: camel_case_types
-class addImageViewModel extends GetxController {
+class AddImageViewModel extends GetxController {
   String? amm;
   @override
   void onInit() async {

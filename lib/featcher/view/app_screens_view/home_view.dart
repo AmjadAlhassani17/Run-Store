@@ -27,14 +27,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-    @override
-  void initState() {
-    super.initState();
-    askPermission();
-    // AppSettings.openLocationSettings();
-    _getGeoLocationPosition();
-    GetAddressFromLatLong();
-  }
 
   String location ='Null, Press Button';
   String Address = 'search';
@@ -202,6 +194,7 @@ class _HomeViewState extends State<HomeView> {
       }
   }
 
+  // ignore: unused_element
   Future<Position> _getGeoLocationPosition() async {
     bool serviceEnabled;
     LocationPermission permission;

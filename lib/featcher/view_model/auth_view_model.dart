@@ -12,6 +12,8 @@ import 'package:runstore/featcher/view/login_screens_view/signin_account_view.da
 import 'package:runstore/featcher/view_model/fire_store_user.dart';
 import 'package:runstore/utils/shared/local_user_data.dart';
 
+import '../../utils/utils.dart';
+
 class AuthViewModel extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
@@ -154,8 +156,10 @@ class AuthViewModel extends GetxController {
     UserModel userModel = UserModel(
       userId: user.user!.uid,
       email: user.user!.email,
-      name:  name.text == null ? FirebaseAuth.instance.currentUser?.displayName : name.text ,
-      image: image == null ? ' ' : image,
+      name:  user.user!.displayName,
+      image: user.user!.photoURL.toString() == null
+            ? Utils.instance.urlUserPlacholder
+            : user.user!.photoURL.toString(),
     );
     await FireStoreUser().addUserToFireStore(userModel);
     setUser(userModel);

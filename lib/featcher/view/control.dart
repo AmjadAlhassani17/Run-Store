@@ -7,7 +7,6 @@ import 'package:runstore/featcher/core/colors/colors.dart';
 import 'package:runstore/featcher/core/path/svgs_path.dart';
 import 'package:runstore/featcher/view/hint_screens_view/welcome_view.dart';
 import 'package:runstore/featcher/view_model/control_view_model.dart';
-import '../view_model/addimage_view_model.dart';
 import '../view_model/auth_view_model.dart';
 
 
@@ -19,7 +18,6 @@ class ControlView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    Get.put(addImageViewModel(),permanent: true);
     return Obx(() {
       return (authViewModel.user == null)
           ? WelcomeScreen()

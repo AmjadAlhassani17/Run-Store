@@ -33,6 +33,7 @@ class CustomBottonSocial extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
           child: ElevatedButton(
             onPressed: function,
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundcolor)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

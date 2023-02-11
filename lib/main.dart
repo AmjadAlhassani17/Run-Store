@@ -15,8 +15,8 @@ import 'network/dio_manage_class.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  NotificationService.instance.messageHandler(message , isBackground: true);
-} 
+  NotificationService.instance.messageHandler(message, isBackground: true);
+}
 
 void main() async {
   runZonedGuarded<Future<void>>(() async {
@@ -27,9 +27,9 @@ void main() async {
     Utils.instance.setScreenOriantaion();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorSelect.transparent,
-        statusBarBrightness: Brightness.dark,
-        statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: ColorSelect.primarycolor,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: ColorSelect.primarycolor,
     ));
     await SharedPrefs.init();
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;

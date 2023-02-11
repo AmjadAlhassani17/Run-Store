@@ -19,6 +19,9 @@ class Utils {
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
+  String urlUserPlacholder =
+      "https://jenalk.ahdtech.com/dev/assets/img/no-user.png";
+      
   // void init() async {
   //   WidgetsFlutterBinding.ensureInitialized();
   //   await SharedPrefs.instance.initPrefs();

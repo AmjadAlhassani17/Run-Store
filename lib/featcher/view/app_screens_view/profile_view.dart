@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:runstore/featcher/core/colors/colors.dart';
-import 'package:runstore/featcher/view/app_screens_view/chat/chat_screen.dart';
 import 'package:runstore/featcher/view/app_screens_view/profile_pages_view/language_view.dart';
 import 'package:runstore/featcher/view/app_screens_view/profile_pages_view/my_order_view.dart';
 import 'package:runstore/featcher/view_model/get_data_user_view_model.dart';
@@ -17,14 +15,15 @@ import 'cheack_out_views/check_out_view.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
+
+  static final AddImageViewModel addImageViewModel = Get.put(AddImageViewModel(), permanent: true);
+  static final DataUser dataUser = Get.put(DataUser(), permanent: true);
   
-  static DataUser getDataViewModel = Get.put(DataUser(), permanent: true);
-  // static addImageViewModel addimage = Get.put(addImageViewModel(),permanent: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetBuilder<DataUser>(
-          init: DataUser(),
+        init: DataUser(),
           builder: (controller) {
             return Container(
               height: double.infinity,
@@ -57,116 +56,31 @@ class ProfileView extends StatelessWidget {
                   SizedBox(
                     height: 24,
                   ),
-                  GetBuilder<addImageViewModel>(builder: (controller) {
-                    return InkWell(
-                        onTap: () {
-                          showModalBottomSheet<void>(
-                            context: context,
-                            backgroundColor:
-                                ColorSelect.scaffoldBackgroundColor,
-                            builder: (BuildContext context) {
-                              return Container(
-                                height: 150,
-                                color: ColorSelect.scaffoldBackgroundColor,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    Container(
-                                      height: 75,
-                                      color:
-                                          ColorSelect.scaffoldBackgroundColor,
-                                      width: double.infinity,
-                                      child: ElevatedButton(
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  ColorSelect
-                                                      .scaffoldBackgroundColor),
-                                        ),
-                                        child: ListTile(
-                                          leading: const Icon(
-                                            Icons.camera_alt_rounded,
-                                            size: 30,
-                                            color: ColorSelect.textColor,
-                                          ),
-                                          title: CustomText(
-                                            text: StringKey.camera.tr,
-                                            color: ColorSelect.blackColor,
-                                            fontsize: 20,
-                                            textAlign: TextAlign.left,
-                                            fontWeight: FontWeight.normal,
-                                            height: 0.0,
-                                            textOverflow: TextOverflow.clip,
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          controller
-                                              .pickImage(ImageSource.camera);
-                                        },
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 75,
-                                      color:
-                                          ColorSelect.scaffoldBackgroundColor,
-                                      width: double.infinity,
-                                      child: ElevatedButton(
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  ColorSelect
-                                                      .scaffoldBackgroundColor),
-                                        ),
-                                        child: ListTile(
-                                          leading: const Icon(
-                                            Icons.photo_album_rounded,
-                                            size: 30,
-                                            color: ColorSelect.textColor,
-                                          ),
-                                          title: CustomText(
-                                            text: StringKey.gallery.tr,
-                                            color: ColorSelect.blackColor,
-                                            fontsize: 20,
-                                            textAlign: TextAlign.left,
-                                            fontWeight: FontWeight.normal,
-                                            height: 0.0,
-                                            textOverflow: TextOverflow.clip,
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          controller
-                                              .pickImage(ImageSource.gallery);
-                                        },
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              );
-                            },
-                          );
-                        },
-                        child: Container(
-                          width: 120.0,
-                          height: 120.0,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: new BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: controller.amm != " "
-                              ? Image.network(
-                                  '${controller.amm}',
-                                  width: 200,
-                                  height: 200,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.network(
-                                  '${FirebaseAuth.instance.currentUser?.photoURL}',
-                                  width: 200,
-                                  height: 200,
-                                  fit: BoxFit.contain,
-                                ),
-                        ));
+                  GetBuilder<AddImageViewModel>(
+                    init: AddImageViewModel(),
+                    builder: (controller) {
+                    return Container(
+                      width: 120.0,
+                      height: 120.0,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: controller.amm != null
+                          ? Image.network(
+                              '${controller.amm}',
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.network(
+                              '${FirebaseAuth.instance.currentUser?.photoURL}',
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.contain,
+                            ),
+                    );
                   }),
                   SizedBox(
                     height: 16,
@@ -222,15 +136,6 @@ class ProfileView extends StatelessWidget {
                               svg: SvgsPath.payment,
                               trailing: () => Get.to(() => CheckOutView()),
                               listTile: () => Get.to(() => CheckOutView()),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            CustomListTail(
-                              name: StringKey.volunteerSupports.tr,
-                              svg: SvgsPath.chat,
-                              trailing: () {Get.to(() => ChatScreen());},
-                              listTile: () {Get.to(() => ChatScreen());},
                             ),
                             SizedBox(
                               height: 20,
